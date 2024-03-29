@@ -774,6 +774,13 @@ class DemoHomePageController extends AbstractController
         return $this->render('page-trainers-style2.twig');
     }
     /**
+     * @Route("/page-teachers-details", name="page-teachers-details")
+     */
+    public function pageteachersdetails()
+    {
+        return $this->render('page-trainers-style2.twig');
+    }
+    /**
      * @Route("/page-trainers-style1", name="page-trainers-style1")
      */
     public function pageTrainersStyle1()
