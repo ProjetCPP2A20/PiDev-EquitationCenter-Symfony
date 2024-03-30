@@ -10,7 +10,8 @@ class DemoHomePageController extends AbstractController
 {
     /**
      * @Route("/", name="indexpage")
-     */    public function notindex(): Response
+     */
+    public function notindex(): Response
     {
         return $this->render('demo_home_page/index.html.twig', [
             'controller_name' => 'DemoHomePageController',
