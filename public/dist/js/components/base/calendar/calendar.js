@@ -1782,7 +1782,7 @@
     forceEventDuration: false,
     nextDayThreshold: "00:00:00",
     dayHeaders: true,
-    initialView: "",
+    initialView: "timeGridWeek",
     aspectRatio: 1.35,
     headerToolbar: {
       start: "title",
@@ -6848,7 +6848,7 @@
       cmdFormatter: input.cmdFormatter,
       recurringTypes: input.recurringTypes || [],
       namedTimeZonedImpl: input.namedTimeZonedImpl,
-      initialView: input.initialView || "",
+      initialView: "timeGridWeek",
       elementDraggingImpl: input.elementDraggingImpl,
       optionChangeHandlers: input.optionChangeHandlers || {},
       scrollGridImpl: input.scrollGridImpl || null,
@@ -6886,7 +6886,7 @@
       cmdFormatter: null,
       recurringTypes: [],
       namedTimeZonedImpl: null,
-      initialView: "",
+      initialView: "timeGridWeek",
       elementDraggingImpl: null,
       optionChangeHandlers: {},
       scrollGridImpl: null,
@@ -9664,7 +9664,7 @@
   // node_modules/@fullcalendar/daygrid/index.js
   var index = createPlugin({
     name: "@fullcalendar/daygrid",
-    initialView: "dayGridMonth",
+    initialView: "timeGridWeek",
     views: {
       dayGrid: {
         component: DayTableView,
@@ -9686,6 +9686,11 @@
       dayGridYear: {
         type: "dayGrid",
         duration: { years: 1 }
+      },
+      headerToolbar: {
+        left: 'prev,next',
+        center: 'title',
+        right: 'timeGridWeek,timeGridDay' // user can switch between the two
       }
     }
   });
