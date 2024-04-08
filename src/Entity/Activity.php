@@ -130,7 +130,17 @@ class Activity
 
     public function setImagedata($imagedata): void
     {
-        $this->imagedata = $imagedata;
+        if (strpos($imagedata, 'data:image') === 0) {
+            // Extract the base64 encoded data from the data URI
+            $base64Data = substr($imagedata, strpos($imagedata, ',') + 1);
+            // Decode the base64 data
+            $binaryData = base64_decode($base64Data);
+            // Set the binary data to the entity's property
+            $this->imagedata = $binaryData;
+        } else {
+            // If the provided data is already binary, set it directly
+            $this->imagedata = $imagedata;
+        }
     }
 
 }
