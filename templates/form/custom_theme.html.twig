@@ -3,7 +3,25 @@
 
 {% block text_widget %}
     <script src="{{ asset('/dist/js/vendors/tom-select.js') }}"></script>
-
+    <script src="{{ asset('dist/js/vendors/dom.js') }}"></script></script>
+    <script src="{{ asset('dist/js/vendors/tailwind-merge.js') }}"></script></script>
+    <script src="{{ asset('dist/js/vendors/dropzone.js') }}"></script></script>
+    <script src="{{ asset('dist/js/utils/helper.js') }}"></script></script>
+    <script src="{{ asset('dist/js/vendors/highlight.js') }}"></script></script>
+    <script src="{{ asset('dist/js/vendors/lucide.js') }}"></script></script>
+    <script src="{{ asset('dist/js/vendors/simplebar.js') }}"></script></script>
+    <script src="{{ asset('dist/js/vendors/transition.js') }}"></script></script>
+    <script src="{{ asset('dist/js/vendors/dropdown.js') }}"></script></script>
+    <script src="{{ asset('dist/js/vendors/popper.js') }}"></script></script>
+    <script src="{{ asset('dist/js/vendors/modal.js') }}"></script></script>
+    <script src="{{ asset('dist/js/components/base/theme-color.js') }}"></script></script>
+    <script src="{{ asset('dist/js/components/base/dropzone.js') }}"></script></script>
+    <script src="{{ asset('dist/js/components/base/highlight.js') }}"></script></script>
+    <script src="{{ asset('dist/js/components/base/source.js') }}"></script></script>
+    <script src="{{ asset('dist/js/components/base/preview-component.js') }}"></script></script>
+    <script src="{{ asset('dist/js/components/themes/tinker/top-bar.js') }}"></script></script>
+    <script src="{{ asset('dist/js/components/base/lucide.js') }}"></script></script>
+    <script src="{{ asset('dist/js/components/mobile-menu.js') }}"></script></script>
     <link href="{{ asset('/dist/css/vendors/dropzone.css') }}" rel="stylesheet"/>
     <link href="{{ asset('/dist/css/vendors/highlight.css') }}" rel="stylesheet"/>
     <link href="{{ asset('/dist/css/vendors/tippy.css') }}" rel="stylesheet"/>
@@ -145,9 +163,25 @@
         <div class="absolute flex h-full w-10 items-center justify-center rounded-l border bg-slate-100 text-slate-500 dark:border-darkmode-800 dark:bg-darkmode-700 dark:text-slate-400">
             <i data-tw-merge data-lucide="calendar" class="stroke-1.5 w-5 h-5 h-4 w-4 h-4 w-4"></i>
         </div>
-        <input id="{{ id }}" name="{{ full_name }}" value="{{ value }}" required="{{ required }}" data-tw-merge type="text" data-single-mode="true" class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 datepicker pl-12 pl-12 datepicker pl-12 pl-12" />
+        <input id="{{ id }}"  name="{{ full_name }}" value="{{ value }}" required="{{ required }}" data-tw-merge type="text" data-single-mode="true" class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 datepicker pl-12 pl-12 datepicker pl-12 pl-12" />
     </div>
+<script>
+    jQuery(document).ready(function() {
+        var inputClicked = false;
+        console.log("doc ready")
+        // Event delegation to handle clicks on dynamically added input fields
+        jQuery(document).on('click', '#{{ id }}', function() {
+            if (!inputClicked) {
+                // Enable one-time click event on the Apply button
+                jQuery('.button-apply').one('click', function() {
+                    // Simulate another click on button-apply
+                    jQuery(this).trigger('click');
+                });
 
+                inputClicked = true; // Set inputClicked to true to prevent further executions
+            }
+        });
+    });</script>
 {% endblock %}
 {% block choice_widget %}
     {% set isMultiple = multiple %}
@@ -161,13 +195,14 @@
                     <option value="">{{ placeholder }}</option>
                 {% endif %}
                 {% for choice in choices %}
-                    <option value="{{ choice.value }}"{{ choice.value in value ? ' selected' : '' }}>{{ choice.label }}</option>
+                    <option value="{{ choice.value }}"{{ choice.value in value ? ' selected' : '' }}>{{ choice.value }}</option>
                 {% endfor %}
             </select>
         </div>
 
 
     </div>
+
 {% endblock %}
 
 {% block textarea_widget %}
@@ -200,7 +235,7 @@
         <div class="max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden items-center">
             <div class="px-4 py-6">
                 <div id="image-preview" class="max-w-sm p-6 mb-4 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
-                    <input type="file" id="activity_imageData" name="activity[imageData]" accept="image/*" required="required" style="display:none">
+                    <input type="file" id="activity_imageData" name="activity[imageData]" accept="image/*" style="display:none">
 
                     <label for="{{ id }}" class="cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-gray-700 mx-auto mb-4">
@@ -227,7 +262,22 @@
         const filenameLabel = document.getElementById('filename');
         const imagePreview = document.getElementById('image-preview');
 
-        // Check if the event listener has been added before
+        function loadImagePreview(base64ImageData,fileName) {
+            filenameLabel.textContent = fileName;
+
+            imagePreview.innerHTML =
+                `<img src="data:image/png;base64,${base64ImageData}" class="max-h-48 rounded-lg mx-auto" alt="Image preview" />`;
+            imagePreview.classList.remove('border-dashed', 'border-2', 'border-gray-400');
+
+            // Add event listener for image preview only once
+            if (!isEventListenerAdded) {
+                imagePreview.addEventListener('click', () => {
+                    uploadInput.click();
+                });
+
+               // isEventListenerAdded = true;
+            }
+        }   // Check if the event listener has been added before
         let isEventListenerAdded = false;
 
         uploadInput.addEventListener('change', (event) => {

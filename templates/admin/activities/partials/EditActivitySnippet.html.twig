@@ -1,0 +1,6 @@
+{% form_theme form 'form/custom_theme.html.twig' %}
+
+                    {{ form_start(form, {'attr': {'id':'activity', 'name': 'activity','enctype': 'multipart/form-data'}}) }}
+
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}

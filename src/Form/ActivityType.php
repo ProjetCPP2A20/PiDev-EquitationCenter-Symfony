@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -22,6 +23,9 @@ class ActivityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('id', HiddenType::class, [
+                'data' => '0',
+            ])
             ->add('date', DateType::class,[
                 'help_attr' => ['class' => 'mt-1 text-xs text-slate-500 sm:ml-auto sm:mt-0'],
                 'label_attr'=> ['class' => 'mb-2 group-[.form-inline]:mb-2 group-[.form-inline]:sm:mb-0 group-[.form-inline]:sm:mr-5 group-[.form-inline]:sm:text-right flex w-full flex-col sm:flex-row'],
@@ -99,11 +103,7 @@ class ActivityType extends AbstractType
                 'constraints' => [
                     new Assert\NotBlank([
             'message' => 'The image data must not be null.',
-        ]),
-
-            ]
-            ]
-                )
+        ]),]])
             ->add('Submit', SubmitType::class,[
                 'attr' => ['placeholder' => 'Add Activity',"value" => "Add Activity"],
                 'label' => 'Add Activity',

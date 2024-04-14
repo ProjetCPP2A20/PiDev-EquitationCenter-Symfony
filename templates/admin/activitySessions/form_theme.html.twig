@@ -1,0 +1,61 @@
+{# templates/form/custom_form_theme.html.twig #}
+
+
+{% block text_widget %}
+    <div class="form-group">
+        <label for="{{ id }}" class="form-label">{{ label }}</label>
+        <input type="text" id="{{ id }}" name="{{ full_name }}" value="{{ value }}"{{ block('widget_attributes') }} />
+    </div>
+{% endblock %}
+
+{% block email_widget %}
+    <div class="form-group">
+        <label for="{{ id }}" class="form-label">{{ label }}</label>
+        <input type="email" id="{{ id }}" name="{{ full_name }}" value="{{ value }}"{{ block('widget_attributes') }} />
+    </div>
+{% endblock %}
+
+{% block password_widget %}
+    <div class="form-group">
+        <label for="{{ id }}" class="form-label">{{ label }}</label>
+        <input type="password" id="{{ id }}" name="{{ full_name }}" value="{{ value }}"{{ block('widget_attributes') }} />
+    </div>
+{% endblock %}
+
+{% block integer_widget %}
+    <div class="form-group">
+        <label for="{{ id }}" class="form-label">{{ label }}</label>
+        <input type="text" id="{{ id }}" name="{{ full_name }}" value="{{ value }}"{{ block('widget_attributes') }} />
+    </div>
+{% endblock %}
+
+{% block choice_widget %}
+    <div class="form-group">
+        <label for="{{ id }}" class="form-label">{{ label }}</label>
+        <select id="{{ id }}" name="{{ full_name }}"{{ block('widget_attributes') }}>
+            {% for choice in choices %}
+                <option value="{{ choice.value }}"{{ choice.value in value ? ' selected' : '' }}>{{ choice.label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+{% endblock %}
+
+{% block textarea_widget %}
+    <div class="form-group">
+        <label for="{{ id }}" class="form-label">{{ label }}</label>
+        <textarea id="{{ id }}" name="{{ full_name }}"{{ block('widget_attributes') }}>{{ value }}</textarea>
+    </div>
+{% endblock %}
+
+{% block button_widget %}
+    <button type="{{ type|default('button') }}"{{ block('button_attributes') }}>
+        {{ label }}
+    </button>
+{% endblock %}
+
+{% block file_widget %}
+    <div class="form-group">
+        <label for="{{ id }}" class="form-label">{{ label }}</label>
+        <input type="file" id="{{ id }}" name="{{ full_name }}"{{ block('widget_attributes') }}>
+    </div>
+{% endblock %}

@@ -142,5 +142,17 @@ class Activity
             $this->imagedata = $imagedata;
         }
     }
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'date' => $this->getDate(),
+            'typeactivity' => $this->getTypeactivity(),
+            'title' => $this->getTitle(),
+            'description' => $this->getDescription(),
+            'price' => $this->getPrice(),
+            'imagedata' => $this->getImagedata(),
+        ];
+    }
 
 }

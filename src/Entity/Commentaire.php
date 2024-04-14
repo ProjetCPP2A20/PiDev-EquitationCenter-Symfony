@@ -20,6 +20,10 @@ class Commentaire
     #[ORM\Column(name: "Commentaire", type: "string", length: 255, nullable: true, options: ["default" => null])]
     private ?string $commentaire = null;
 
+    #[ORM\ManyToOne]
+    private ?Post $post = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +48,18 @@ class Commentaire
     public function setCommentaire(?string $commentaire): self
     {
         $this->commentaire = $commentaire;
+        return $this;
+    }
+
+    public function getPost(): ?Post
+    {
+        return $this->post;
+    }
+
+    public function setPost(?Post $post): static
+    {
+        $this->post = $post;
+
         return $this;
     }
 }

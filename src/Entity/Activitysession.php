@@ -27,7 +27,6 @@ class Activitysession
     #[ORM\JoinColumn(name: "ActivityID", referencedColumnName: "id")]
     private ?Activity $activityid = null;
 
-    // Getters and setters...
 
     public function getId(): ?int
     {
@@ -76,5 +75,15 @@ class Activitysession
     {
         $this->activityid = $activityid;
         return $this;
+    }
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'weekday' => $this->getWeekday(),
+            'starttime' => $this->getStarttime() ? $this->getStarttime()->format('H:i:s') : null,
+            'endtime' => $this->getEndtime() ? $this->getEndtime()->format('H:i:s') : null,
+            'activityid' => $this->getActivityid() ? $this->getActivityid()->getId() : null,
+        ];
     }
 }

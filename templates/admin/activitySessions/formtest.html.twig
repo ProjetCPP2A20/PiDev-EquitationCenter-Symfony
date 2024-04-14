@@ -1,0 +1,31 @@
+<!-- calender css -->
+<link href="/../assets/css/plugins/main.css" rel="stylesheet">
+<!-- [Page specific CSS] end -->
+<!-- [Font] Family -->
+<link href="/../assets/fonts/inter/inter.css" rel="stylesheet">
+<!-- [Tabler Icons] https://tablericons.com -->
+<link href="/../assets/fonts/tabler-icons.min.css" rel="stylesheet">
+<!-- [Feather Icons] https://feathericons.com -->
+<link href="/../assets/fonts/feather.css" rel="stylesheet">
+<!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+<link href="/../assets/fonts/fontawesome.css" rel="stylesheet">
+<!-- [Material Icons] https://fonts.google.com/icons -->
+<link href="/../assets/fonts/material.css" rel="stylesheet">
+<!-- [Template CSS Files] -->
+<link href="/../assets/css/style.css" rel="stylesheet">
+<link href="/../assets/css/style-preset.css" rel="stylesheet">
+
+<div class="offcanvas offcanvas-end show" tabindex="-1" id="calendar-add_edit_event" aria-modal="true" role="dialog">
+    <div class="offcanvas-header">
+        <h3 class="f-w-600 text-truncate">Add Events</h3>
+        <a href="#" class="avtar avtar-s btn-link-danger btn-pc-default" data-bs-dismiss="offcanvas">
+            <i class="ti ti-x f-20"></i>
+        </a>
+    </div>
+    {% form_theme form 'admin/activitySessions/form_theme.html.twig' %}
+
+    <div class="offcanvas-body">
+{{ form_start(form)}}
+    {{ form_widget(form) }}
+{{ form_end(form)}}</div>
+</div>

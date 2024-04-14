@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,6 +21,11 @@ class Post
 
     #[ORM\Column(name: "Description", type: "string", length: 255, nullable: true, options: ["default" => null])]
     private ?string $description = null;
+
+    public function __construct()
+    {
+        $this->post = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -46,4 +53,6 @@ class Post
         $this->description = $description;
         return $this;
     }
+
+
 }
