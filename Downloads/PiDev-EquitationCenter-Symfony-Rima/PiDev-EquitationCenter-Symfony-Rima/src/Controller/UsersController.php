@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 
 class UsersController extends AbstractController
@@ -20,7 +22,7 @@ class UsersController extends AbstractController
       'controller_name' => 'UsersController',
     ]);
   }
-  #[Route('/login', name:'app_login')]
+ /* #[Route('/login', name:'app_login')]
 
   public function login(): Response
   {
@@ -32,14 +34,65 @@ class UsersController extends AbstractController
   {
     return $this->render('Users/form-login-register-style2.twig');
   }
-  #[Route('/afficherUser', name: 'app_afficher')]
-  public function indexAfficher(): Response
+ */
+  #[Route('/api/user/edit/{id}', name: 'api_user_edit')]
+  public function editUser(Request $request, int $id, EntityManagerInterface $em, UsersRepository $usersRepository): Response
   {
+    $user = $usersRepository->find($id);
 
-    return $this->render('Users/enigma-side-menu-users-layout-2-page.twig');
+    if (!$user) {
+      throw $this->createNotFoundException('User not found');
+    }
+
+    $form = $this->createForm(UserType::class, $user,
+      [
+        'action' => $this->generateUrl('app_admin_users', ['id' => $id])
+      ]);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+      return new JsonResponse(['success' => true]);
+    }
+
+    $htmlContent = $this->renderView('admin/activities/partials/EditActivitySnippet.html.twig', [
+      'form' => $form->createView(),
+      'users' => $user,
+    ]);
+    return new JsonResponse(['html' => $htmlContent]);
   }
+  // get Activities API => JSONResponse
+  #[Route('/api/users', name: 'api_users')]
+  public function getUser(Request $request, PaginatorInterface $paginator, EntityManagerInterface $em, UsersRepository $activityRepository)
+  {
+    $page = $request->query->getInt('page', 1);
+
+    $activities = $activityRepository->findAll();
+    $pagination = $paginator->paginate(
+      $activities,
+      $page,
+      10
+
+    );
+
+
+    // Use the route
+    $pagination->setUsedRoute('app_admin_users');
+
+    $paginationHtml = $this->renderView('admin/activities/partials/PaginationsSnippet.html.twig', [
+      'pagination' => $pagination
+    ]);
+    $htmlContent = $this->renderView('admin/activities/partials/ActivitiesSnippet.html.twig', [
+      'users' => $users,
+      'pagination' => $pagination
+    ]);
+
+
+    return new JsonResponse(['html' => $htmlContent, 'paginationHtml' => $paginationHtml]);
+  }
+
   #[Route('/add/users', name: 'app_admin_users')]
-  public function viewUsers(Request $request ,UsersRepository $usersRepository,EntityManagerInterface $entityManager): Response
+  public function viewUsers(Request $request ,UsersRepository $usersRepository,EntityManagerInterface $entityManager ,): Response
   {
     $user = new Users();
     $form = $this->createForm(UserType::class, $user);

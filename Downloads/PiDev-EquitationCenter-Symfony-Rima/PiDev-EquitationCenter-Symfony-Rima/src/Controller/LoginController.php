@@ -16,7 +16,7 @@ class LoginController extends AbstractController
     {
 
     }
-    #[Route('/', name: 'app_login')]
+    #[Route('/login', name: 'app_login')]
     public function login(Request $request, UsersRepository $usersRepository, UserPasswordEncoderInterface $passwordEncoder, SessionInterface $session): Response
     {
         if($session->get('user') != null)
