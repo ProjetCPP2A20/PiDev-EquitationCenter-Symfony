@@ -2,57 +2,62 @@
 
 namespace App\Controller;
 
+use App\Entity\Users;
+use App\Form\LoginType;
 use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class LoginController extends AbstractController
 {
-    public function index(SessionInterface $session): Response
-    {
+
+  #[Route('/home', name: 'app_home')]
+  public function index(): Response
+  {
+    return $this->render('Users/index-dark-mp-layout1.twig', [
+      'controller_name' => 'LoginController',
+    ]);
+  }
+  #[Route('/login', name: 'app_login')]
+  public function login(Request $request,UsersRepository $usersRepository): Response
+  {
+    $user = new Users();
+    $form = $this->createForm(LoginType::class, $user);
+
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted()) {
+      $email = $form->get('email')->getData();
+
+      // get the user from the database
+      $user = $usersRepository->findOneBy(['email' => $email]);
+      if ($user == null)
+      {
+        dd("ERROR USER");
+       // return $this->render('')
+      }
+      $session = new Session();
+      $session->set('user', $user);
+      if ($user->getRole() == "Client")
+        return $this->redirectToRoute('app_client_homepage');
+      elseif ($user->getRole() == "Admin")
+        return $this->redirectToRoute("app_users");
+      elseif ($user->getRole() == "Vet")
+        return $this->redirectToRoute("app_vet");
+      elseif ($user->getRole() == "Instructor")
+        return $this->redirectToRoute("app_Instructor");
+
 
     }
-    #[Route('/login', name: 'app_login')]
-    public function login(Request $request, UsersRepository $usersRepository, UserPasswordEncoderInterface $passwordEncoder, SessionInterface $session): Response
-    {
-        if($session->get('user') != null)
-        {
-            return $this->redirectToRoute('app_client_homepage');
-        }
-            if ($request->isMethod('POST')) {
-            $email = $request->request->get('_email');
-            $password = $request->request->get('_password');
-
-            $user = $usersRepository->findOneBy(['email' => $email]);
-
-            if (!$user) {
-                return $this->render('Users/enigma-side-menu-login-page.twig', ['error' => 'Utilisateur non trouvé.','last_username' => $email]);
-            }
-
-            if ($user->getPassword() == $password) {
-              $userRole = $session->get("user")->getRole();
-
-
-                $session->set('user', $user);
-                if($session->get("user")->getRole()=="Client")
-                    return $this->redirectToRoute('app_client_homepage');
-                elseif($session->get("user")->getRole()=="Admin")
-                    return $this->redirectToRoute("app_admin");
-                elseif($session->get("user")->getRole()=="Vet")
-                  return $this->redirectToRoute("app_vet");
-                elseif($session->get("user")->getRole()=="Instructor")
-                  return $this->redirectToRoute("app_Instructor");
-            } else {
-                return $this->render('Users/enigma-side-menu-login-page.twig', ['error' => 'Informations invalide.','last_username' => $email]);
-            }
-        }
-
-        return $this->render('Users/enigma-side-menu-login-page.twig',['last_username' => '','error' => '']);
-    }
+    return $this->render('Users/enigma-side-menu-login-page.twig', [
+      'form' => $form->createView(),
+    ]);
+  }
     #[Route('/logout', name: 'app_logout')]
 
     public function logout(SessionInterface $session): Response

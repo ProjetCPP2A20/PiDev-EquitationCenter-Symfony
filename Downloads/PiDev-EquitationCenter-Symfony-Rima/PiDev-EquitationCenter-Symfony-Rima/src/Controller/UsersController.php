@@ -2,15 +2,18 @@
 
 namespace App\Controller;
 use App\Entity\Users;
+use App\Form\LoginType;
+use App\Repository\ActivityRepository;
 use App\Repository\UsersRepository;
 use App\Form\UserType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
+use Knp\Component\Pager\PaginatorInterface;
 
 
 class UsersController extends AbstractController
@@ -22,22 +25,21 @@ class UsersController extends AbstractController
       'controller_name' => 'UsersController',
     ]);
   }
- /* #[Route('/login', name:'app_login')]
 
-  public function login(): Response
-  {
-    return $this->render('Users/enigma-side-menu-login-page.twig');
-  }
-  #[Route('/register', name:'app_register')]
+
+
+   /*#[Route('/register', name:'app_register')]
 
   public function Register(): Response
   {
     return $this->render('Users/form-login-register-style2.twig');
   }
  */
-  #[Route('/api/user/edit/{id}', name: 'api_user_edit')]
-  public function editUser(Request $request, int $id, EntityManagerInterface $em, UsersRepository $usersRepository): Response
+  #[Route('/api/user/edit/', name: 'api_user_edit')]
+  public function editUser(Request $request, EntityManagerInterface $em, UsersRepository $usersRepository): Response
   {
+    $formData = $request->request->all();
+    $id = $formData['userId'];
     $user = $usersRepository->find($id);
 
     if (!$user) {
@@ -49,48 +51,74 @@ class UsersController extends AbstractController
         'action' => $this->generateUrl('app_admin_users', ['id' => $id])
       ]);
 
-    $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
       return new JsonResponse(['success' => true]);
     }
 
-    $htmlContent = $this->renderView('admin/activities/partials/EditActivitySnippet.html.twig', [
+    $htmlContent = $this->renderView('Users/partials/EditUsersSnippet.html.twig', [
       'form' => $form->createView(),
       'users' => $user,
     ]);
     return new JsonResponse(['html' => $htmlContent]);
   }
-  // get Activities API => JSONResponse
-  #[Route('/api/users', name: 'api_users')]
-  public function getUser(Request $request, PaginatorInterface $paginator, EntityManagerInterface $em, UsersRepository $activityRepository)
-  {
-    $page = $request->query->getInt('page', 1);
 
-    $activities = $activityRepository->findAll();
-    $pagination = $paginator->paginate(
-      $activities,
-      $page,
-      10
+#[Route('/api/user/add', name: 'api_user_add')]
+  public function addUser(UsersRepository $usersRepository,Request $request, EntityManagerInterface $entityManager): Response
+{
+  $user = new Users();
+  $form = $this->createForm(UserType::class, $user);
 
-    );
+  $form->handleRequest($request);
 
+  if ($form->isSubmitted() && !$form->isValid()) {
+    $errors = [];
 
-    // Use the route
-    $pagination->setUsedRoute('app_admin_users');
+    foreach ($form->getErrors(true, true) as $error) {
+      if (!$error->getOrigin()->getName() != "date") {
+        $fieldName = $error->getOrigin()->getName();
+        $errorMessage = $error->getMessage();
 
-    $paginationHtml = $this->renderView('admin/activities/partials/PaginationsSnippet.html.twig', [
-      'pagination' => $pagination
-    ]);
-    $htmlContent = $this->renderView('admin/activities/partials/ActivitiesSnippet.html.twig', [
-      'users' => $users,
-      'pagination' => $pagination
-    ]);
-
-
-    return new JsonResponse(['html' => $htmlContent, 'paginationHtml' => $paginationHtml]);
+        $errors['errors'][$fieldName] = $errorMessage;
+      }
+    }
+//            dd($request);
+    unset($errors["errors"]["imagedata"]);
+    unset($errors["errors"]["user"]);
+    if (!empty($errors['errors'])) {
+      return new Response(json_encode($errors), 200, ['Content-Type' => 'application/json']);
+    }
   }
+  if ($form->isSubmitted()) {
+    $date = new \DateTime();
+    $user->setDatejoined($date);
+    $user->setId($request->request->get('id'));
+    $userUpdated = $usersRepository->find($user->getId());
+    $userUpdated = $user;
+    $uploadedFile = $request->files->get('user_imageData')[0]->getPathname();
+    if ($uploadedFile) {
 
+      // Read the binary data from the uploaded file
+      $binaryData = file_get_contents($uploadedFile);
+      $userUpdated->setImagedata($binaryData);
+      // Set the binary data on your entity
+
+      // Persist the entity
+      $entityManager->persist($user);
+      $entityManager->flush();
+      // Retrieve the newly added user
+      $newUser = $usersRepository->find($user->getId());
+      $userData = get_object_vars($user);
+
+      // Serialize the activity data into JSON
+      $responseData = json_encode($userData);
+
+      // Return the serialized activity data as JSON response
+      return new Response($responseData);
+    }
+  }
+  return new Response("success");
+}
   #[Route('/add/users', name: 'app_admin_users')]
   public function viewUsers(Request $request ,UsersRepository $usersRepository,EntityManagerInterface $entityManager ,): Response
   {
@@ -113,7 +141,7 @@ class UsersController extends AbstractController
 //            dd($request);
       unset($errors["errors"]["imagedata"]);
       unset($errors["errors"]["user"]);
-      if(!empty($errors['errors'])){
+      if (!empty($errors['errors'])) {
         return new Response(json_encode($errors), 200, ['Content-Type' => 'application/json']);
       }
     }
@@ -124,7 +152,8 @@ class UsersController extends AbstractController
       // $uploadedFile = $request->files->get('activity')['imageData']->getData();
       // $uploadedFile = $request->files->get('activity')['imageData']->getData();
 
-      $uploadedFile=$request->files->get('user_imageData')[0]->getPathname();
+    if($user->getId() == 0){
+      $uploadedFile = $request->files->get('user_imageData')[0]->getPathname();
       if ($uploadedFile) {
 
         // Read the binary data from the uploaded file
@@ -145,20 +174,43 @@ class UsersController extends AbstractController
 
         // Return the serialized activity data as JSON response
         return new Response($responseData);
-
-
       }
+
+    }
+    if($user->getId() != 0){
+      $updatedUser = $usersRepository->find($user->getId());
+
+      if (count($request->files->all()) != 0) {
+        $uploadedFile = $request->files->get('user_imageData')[0]->getPathname();
+        if ($uploadedFile) {
+          $binaryData = file_get_contents($uploadedFile);
+
+          $updatedUser->setImagedata($binaryData);
+        }
+      }
+      $updatedUser->setRole($user->getRole());
+      $updatedUser->setName($user->getName());
+      $updatedUser->setNumTel($user->getNumTel());
+      $updatedUser->setEmail($user->getEmail());
+      $updatedUser->setPassword($user->getPassword());
+      $updatedUser->setDatejoined($user->getDatejoined());
+      $updatedUser->setAddress($user->getAddress());
+
+      $entityManager->persist($updatedUser);
+      $entityManager->flush();
+      $responseData = json_encode($updatedUser->jsonSerialize());
+
+      return new Response($responseData);
+
+
+    }
+
     }
     $users = $usersRepository->findAll();
-    $usersImageData = [];
 
-    foreach ($users as $user) {
-      $usersImageData[] = $user->getImageData();
-    }
     return $this->render('Users/index.html.twig', [
       'controller_name' => 'UsersController',
       'users' => $users,
-      'usersImageData' => $usersImageData,
       'form' => $form->createView(),
     ]);
   }
@@ -178,7 +230,7 @@ class UsersController extends AbstractController
     // Return a success response
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
-    $response->setContent(json_encode(['message' => 'User deleted successfully']));
+    $response->setContent(json_encode(['message' => 'User supprimé avec succès.']));
     return $response;    }
 
   /* #[Route('/supprimerUser/{id}', name: 'app_supprimer')]
@@ -195,4 +247,20 @@ class UsersController extends AbstractController
   /*
   *
   */
+  #[Route('/api/users', name: 'api_users')]
+  public function getUsers(Request $request, UsersRepository $usersRepository, EntityManagerInterface $em, ActivityRepository $activityRepository)
+  {
+
+    $users = $usersRepository->findAll();
+
+    // Use the route
+
+    $htmlContent = $this->renderView('Users/partials/UsersSnippet.html.twig', [
+      'users' => $users,
+    ]);
+
+
+    return new JsonResponse(['html' => $htmlContent]);
+  }
+
 }

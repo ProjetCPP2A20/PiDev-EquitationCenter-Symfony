@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: "users")]
@@ -33,8 +32,8 @@ class Users
   #[Assert\NotBlank (message: "nom est requis")]
   #[Assert\Regex(
     pattern: '/\d/',
+    message: 'Votre prénom ne peut pas contenir de chiffre',
     match: false,
-    message: 'Votre nom ne peut pas contenir de chiffre',
   )]
   private string $name;
 
@@ -46,8 +45,8 @@ class Users
   #[Assert\NotBlank(message: "prénom est requis")]
   #[Assert\Regex(
     pattern: '/\d/',
+    message: 'Votre nom ne peut pas contenir de chiffre',
     match: false,
-    message: 'Votre prénom ne peut pas contenir de chiffre',
   )]
   private string $lastname;
 
@@ -56,12 +55,13 @@ class Users
   private string $address;
 
   #[ORM\Column(name: "num_tel", type: "string", length: 255, nullable: false)]
+  #[Assert\NotBlank(message: "le champ est vide")]
   #[Assert\Regex(
     pattern: '/^[0-9]{8}\d*$/',
-    match: true,
     message: 'Le numéro de téléphone doit être composé de 8 chiffres',
+    match: true,
   )]
-  #[Assert\NotBlank(message: "le champ est vide")]
+
   private string $numTel;
 
   #[ORM\Column(name: "imageData", type: "blob", length: 16777215, nullable: false)]
@@ -83,6 +83,10 @@ class Users
   public function getId(): ?int
   {
     return $this->id;
+  }
+  public function setId(int $id)
+  {
+    $this->id=$id;
   }
 
   public function getEmail(): ?string
@@ -218,6 +222,22 @@ class Users
   {
     $this->datejoined = $datejoined;
 
+  }
+
+  public function jsonSerialize()
+  {
+    return [
+      'id' => $this->getId(),
+      'email' => $this->getEmail(),
+      'password' => $this->getPassword(),
+      'name' => $this->getName(),
+      'role' => $this->getRole(),
+      'lastname' => $this->getLastname(),
+      'address' => $this->getAddress(),
+      'numTel' => $this->getNumTel(),
+      'imagedata' => $this->getImagedata(),
+      'datejoined' => $this->getDatejoined()->format('Y-m-d'),
+    ];
   }
 }
 

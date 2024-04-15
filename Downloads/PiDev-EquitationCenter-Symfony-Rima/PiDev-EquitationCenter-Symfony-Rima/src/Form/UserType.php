@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -20,50 +21,69 @@ class UserType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options): void
   {
     $builder
-      ->add('name',TextType::class,[
-        'attr' => ['placeholder' => 'Nom','maxlength' => 50],
-        'help' => 'The name must be at least 3 characters long.',
+      ->add('id', HiddenType::class, [
+        'data' => '0',
+      ])
+
+
+      ->add('name',
+        TextType::class,['attr' => ['placeholder' => '','maxlength' => 50],
+        'help' => 'Pas de chiffre',
+        'label' => 'Prénom',
 
       ])
       ->add('lastname',
-        TextType::class, ['attr' => ['placeholder' => 'Last Name','maxlength' => 50,],
-          'help' => 'The last name must be at least 3 characters long.',
+        TextType::class, ['attr' => ['placeholder' => '','maxlength' => 50,],
+          'help' => 'Pas de chiffre.',
+          'label' => 'Nom',
         ])
 
       ->add('email',EmailType::class,[
-        'attr' => ['placeholder' => 'Email','maxlength' => 50],
-        'help' => 'The email must be a valid email address.',
+        'attr' => ['placeholder' => '','maxlength' => 50],
+        'help' => ' Valid email addresse.',
+
       ])
-      ->add('password',RepeatedType::class, [
+   /*   ->add('password',RepeatedType::class, [
+        'attr' => ['placeholder' => 'pwd','maxlength' => 50],
         'type' => PasswordType::class,
         'first_options' => ['label' => 'Password'],
         'second_options' => ['label' => 'Confirm Password'],
         'help' => 'The password must be at least 8 characters long.',
-        'attr' => ['placeholder' => 'pwd','maxlength' => 50],
+        'help_attr' => ['class' => 'mt-1 text-xs text-slate-500 sm:ml-auto sm:mt-0'],
 
-      ])
+
+      ])*/
+   ->add('password',PasswordType::class, [
+     'attr' => ['placeholder' => '','maxlength' => 50],
+     'help' => 'au moins 8 characters.',
+     'help_attr' => ['class' => 'mt-1 text-xs text-slate-500 sm:ml-auto sm:mt-0'],
+     'label' => 'Mot de passe',
+
+   ])
 
       ->add('role', ChoiceType::class, [
         'choices'  => [
-
           'Admin' => 'Admin',
-          'INSTRUCTOR' => ' INSTRUCTOR',
-          'Vet' => ' Vet',
+          'INSTRUCTOR' => 'INSTRUCTOR',
+          'Vet' => 'Vet',
+          'Client' => 'Client'
         ],
         'attr'=> ['placeholder' => 'Role']])
       ->add('numTel',TextType::class,[
-        'attr' => ['placeholder' => 'Num Tel','maxlength' => 8,],
-        'help' => 'The phone number must be 8 digits long.',
+        'attr' => ['placeholder' => '','maxlength' => 8,],
+        'help' => 'au moins 8 chiffres.',
+        'label' => 'Numéro de téléphone',
       ])
       ->add('address',TextType::class,[
-        'attr' => ['placeholder' => 'Address','maxlength' => 50,],
-        'help' => "The address must be at least 3 characters long.",
-
+        'attr' => ['placeholder' => '','maxlength' => 50,],
+        'help' => " Adresse valide.",
+        'label' => 'Adresse',
       ])
       ->add('imageData',FileType::class,[
-        'attr' => ['placeholder' => 'Image','maxlength' => 50,],
-        'help' => 'The image must be a valid image file.
+        'attr' => ['placeholder' => '','maxlength' => 50,],
+        'help' => 'Image .
                 ','help_attr' => ['class' => 'mt-1 text-xs text-slate-500 sm:ml-auto sm:mt-0'],
+        'label' => 'Image',
       ])
 
       -> add('submit', SubmitType::class,[

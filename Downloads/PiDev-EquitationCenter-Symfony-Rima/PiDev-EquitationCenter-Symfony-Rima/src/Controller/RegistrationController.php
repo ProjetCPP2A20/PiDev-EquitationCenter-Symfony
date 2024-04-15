@@ -19,6 +19,7 @@ class RegistrationController extends AbstractController
             'controller_name' => 'RegistrationController',
         ]);
     }
+
     #[Route('/register', name: 'app_register')]
 
     public function register (Request $request, EntityManagerInterface $entityManager)
@@ -27,6 +28,13 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
+
+          $uploadedFile=$request->files->get('user')['blobimage']->getPathname();
+          if ($uploadedFile)
+            // Read the binary data from the uploaded file
+            $binaryData = file_get_contents($uploadedFile);
+            $user->setBlobimage($binaryData);
+            $entityManager->persist($user);
             $user->setPassword($form->get('password')->getViewData());
             $entityManager->persist($user);
             $entityManager->flush();
