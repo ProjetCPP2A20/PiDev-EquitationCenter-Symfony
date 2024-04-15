@@ -1225,7 +1225,7 @@
         droppable: true,
         selectable: true,
         selectMirror: true,
-        editable: true,
+        editable: false,
         dayMaxEvents: true,
         slotMinTime: '08:00:00',
         slotMaxTime: '19:00:00',
@@ -1246,7 +1246,7 @@
             globalstarttime = sdt;
             globalstarttime_temp = sdt;
             globalendtime = edt;
-
+            console.log('"setting start time"');
             var hours = sdt.getHours().toString().padStart(2, '0'); // get hours and convert it to 2 digits
             var minutes = sdt.getMinutes().toString().padStart(2, '0'); // get minutes and convert it to 2 digits
             document.getElementById('activity_session_starttime').value = hours + ':' + minutes;
@@ -1257,6 +1257,9 @@
             calendar.unselect();
         },
         eventClick: function (info) {
+
+            console.log(info.event.start);
+            console.log(info.event.end);
             calendevent = info.event;
             var clickedevent = info.event;
             var e_title = clickedevent.title === undefined ? '' : clickedevent.title;
@@ -1266,6 +1269,13 @@
             e_date_end = clickedevent.end === null ? '' : e_date_end;
             var e_venue = clickedevent.extendedProps.description === undefined ? '' : clickedevent.extendedProps.venue;
 
+            var sdt = new Date(info.event.start);
+            var edt = new Date(info.event.end);
+            globalstarttime = sdt;
+            globalstarttime_temp = sdt;
+            globalendtime = edt;
+            console.log("setting activitysessionID"+clickedevent.extendedProps.actid);
+            activitySessionID = clickedevent.extendedProps.actid;
             document.querySelector('.calendar-modal-title').innerHTML = e_title;
             document.querySelector('.pc-event-title').innerHTML = e_title;
             document.querySelector('.pc-event-description').innerHTML = e_desc;
@@ -1287,8 +1297,8 @@
     });
 
     var pc_event_remove = document.querySelector('#pc_event_remove');
-
     async function deleteSession(calendevent) {
+        console.log(calendevent.extendedProps)
 
         await fetch('/api/session/delete/', {
             method: 'POST',
@@ -1394,9 +1404,16 @@
                 });
                 return
             }
-            console.log(pc_event_add.getAttribute('data-pc-action') === 'add');
-            console.log("TRUEEEEEEEEEE????"+pc_event_add.getAttribute('data-pc-action') === 'add');
-            if (pc_event_add.getAttribute('data-pc-action') === 'add') {
+            var bool = pc_event_add.getAttribute('data-pc-action') === 'edit';
+            console.log("EDIT");
+            if (bool) {
+                console.log("ITS TRUE");
+            } else {
+                console.log("ITS FALSE");
+            }
+            if (bool === true) {
+                console.log("sending data to event add API");
+                console.log(activitySessionID);
                 var data = {
                     'starttime': e_date_start,
                     'endtime': e_date_end,
@@ -1450,15 +1467,13 @@
                     text: 'Event added successfully'
                 });
             } else {
-                calendevent.remove();
                 var data = {
-                    'id': activitySessionID,
                     'starttime': e_date_start,
                     'endtime': e_date_end,
                     'activityid': activity,
                     'weekday': weekday
                 };
-                await fetch('/api/session/update/', {
+                await fetch('/api/session/new/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1479,7 +1494,12 @@
                         });
                         return;
                     });
-                calendar.add({
+
+                let activityId = parseInt(activity); // Replace with the id you are looking for
+
+                var activityObject = activities.find(activity => activity.id === activityId);
+                console.log(activityObject);
+                calendar.addEvent({
                     title: activityObject.title,
                     start: globalstarttime_temp,
                     end: globalendtime,
@@ -1506,6 +1526,7 @@
     var pc_event_edit = document.querySelector('#pc_event_edit');
     if (pc_event_edit) {
         pc_event_edit.addEventListener('click', function () {
+
            // var e_title = calendevent.title === undefined ? '' : calendevent.title;
             //var e_desc = calendevent.extendedProps.description === undefined ? '' : calendevent.extendedProps.description;
             var e_date_start = calendevent.start === null ? '' : dateformat(calendevent.start);
