@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+
+<!-- Meta Tags -->
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="description" content="Horseman | Equestrian & Horse Riding Training HTML Template" />
+<meta name="keywords" content="horse,equestrian,riding,racing,horseman,horsewomen,cavalier,jumping" />
+<meta name="author" content="ThemeMascot" />
+
+<!-- Page Title -->
+<title>Horseman | Equestrian & Horse Riding Training HTML Template</title>
+
+<!-- Favicon and Touch Icons -->
+<link href="{{ asset('images/favicon.png') }}" rel="stylesheet"/>
+<link href="{{ asset('images/apple-touch-icon.png') }}" rel="stylesheet"/>
+<link href="{{ asset('images/apple-touch-icon-72x72.png') }}" rel="stylesheet"/>
+<link href="{{ asset('images/apple-touch-icon-114x114.png') }}" rel="stylesheet"/>
+<link href="{{ asset('images/apple-touch-icon-144x144.png') }}" rel="stylesheet"/>
+
+<!-- Stylesheet -->
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"/>
+<link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet"/>
+<link href="{{ asset('css/animate.css') }}" rel="stylesheet"/>
+<link href="{{ asset('css/css-plugin-collections.css') }}" rel="stylesheet"/>
+<!-- CSS | menuzord megamenu skins -->
+<link href="{{ asset('css/menuzord-skins/menuzord-rounded-boxed.css') }}" rel="stylesheet"/>
+<!-- CSS | Main style file -->
+<link href="{{ asset('css/style-main.css') }}" rel="stylesheet"/>
+<!-- CSS | Preloader Styles -->
+<link href="{{ asset('css/preloader.css') }}" rel="stylesheet"/>
+<!-- CSS | Custom Margin Padding Collection -->
+<link href="{{ asset('css/custom-bootstrap-margin-padding.css') }}" rel="stylesheet"/>
+<!-- CSS | Responsive media queries -->
+<link href="{{ asset('css/responsive.css') }}" rel="stylesheet"/>
+<!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
+<!-- <link href="{{ asset('css/style.css') }}" rel="stylesheet"/> -->
+
+<!-- CSS | Theme Color -->
+<link href="{{ asset('css/colors/theme-skin-yellow.css') }}" rel="stylesheet"/>
+
+<!-- external javascripts -->
+<script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script></script>
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script></script>
+<!-- JS | jquery plugin collection for this theme -->
+<script src="{{ asset('js/jquery-plugin-collection.js') }}"></script></script>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="{{ asset('https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js') }}"></script></script>
+  <script src="{{ asset('https://oss.maxcdn.com/respond/1.4.2/respond.min.js') }}"></script></script>
+<![endif]-->
+</head>
+<body class="">
+<div id="wrapper" class="clearfix">
+  <!-- preloader -->
+  <div id="preloader">
+    <div id="spinner" class="spinner large-icon">
+      <img alt="" src="images/preloaders/13.gif">
+    </div>
+    <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
+  </div>
+  
+  <!-- Header -->
+  <header id="header" class="header">
+    <div class="header-top bg-theme-colored sm-text-center p-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="widget no-border m-0">
+              <ul class="list-inline font-13 sm-text-center mt-5">
+                <li>
+                  <a class="text-white" href="#">FAQ</a>
+                </li>
+                <li class="text-white">|</li>
+                <li>
+                  <a class="text-white" href="#">Help Desk</a>
+                </li>
+                <li class="text-white">|</li>
+                <li>
+                  <a class="text-white" href="#">Login</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="widget m-0 pull-right flip sm-pull-none sm-text-center">
+              <ul class="list-inline pull-right flip">
+                <li class="mb-0 pb-0">
+                  <div class="top-dropdown-outer pt-5 pb-10">
+                    <a class="top-cart-link has-dropdown text-white"><i class="fa fa-shopping-cart font-13"></i> (12)</a>
+                    <ul class="dropdown">
+                      <li>
+                        <!-- dropdown cart -->
+                        <div class="dropdown-cart">
+                          <table class="table cart-table-list table-responsive">
+                            <tbody>
+                              <tr>
+                                <td><a href="#"><img alt="" src="http://placehold.it/85x85"></a></td>
+                                <td><a href="#"> Product Title</a></td>
+                                <td>X3</td>
+                                <td>$ 100.00</td>
+                                <td><a class="close" href="#"><i class="fa fa-close font-13"></i></a></td>
+                              </tr>
+                              <tr>
+                                <td><a href="#"><img alt="" src="http://placehold.it/85x85"></a></td>
+                                <td><a href="#"> Product Title</a></td>
+                                <td>X2</td>
+                                <td>$ 70.00</td>
+                                <td><a class="close" href="#"><i class="fa fa-close font-13"></i></a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div class="total-cart text-right">
+                            <table class="table table-responsive">
+                              <tbody>
+                                <tr>
+                                  <td>Cart Subtotal</td>
+                                  <td>$170.00</td>
+                                </tr>
+                                <tr>
+                                  <td>Shipping and Handling</td>
+                                  <td>$20.00</td>
+                                </tr>
+                                <tr>
+                                  <td>Order Total</td>
+                                  <td>$190.00</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="cart-btn text-right">
+                              <a class="btn btn-theme-colored btn-xs" href="{{ path('shop-cart') }}"> View cart</a>
+                              <a class="btn btn-dark btn-xs" href="{{ path('shop-checkout') }}"> Checkout</a>
+                          </div>
+                        </div>
+                        <!-- dropdown cart ends -->
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="mb-0 pb-0">
+                  <div class="top-dropdown-outer pt-5 pb-10">
+                    <a class="top-search-box has-dropdown text-white"><i class="fa fa-search font-13"></i> &nbsp;</a>
+                    <ul class="dropdown">
+                      <li>
+                        <div class="search-form-wrapper">
+                          <form method="get" class="mt-10">
+                            <input type="text" onfocus="if(this.value =='Enter your search') { this.value = ''; }" onblur="if(this.value == '') { this.value ='Enter your search'; }" value="Enter your search" id="searchinput" name="s" class="">
+                            <label><input type="submit" name="submit" value=""></label>
+                          </form>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="widget no-border m-0 mr-15 pull-right flip sm-pull-none sm-text-center">
+              <ul class="styled-icons icon-circled icon-sm pull-right flip sm-pull-none sm-text-center mt-sm-15">
+                <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter text-white"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus text-white"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram text-white"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin text-white"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-middle p-0 xs-text-center">
+      <div class="container pt-0 pb-0">
+        <div class="row">
+          <div class="col-xs-12 col-sm-3 col-md-6">
+            <div class="widget no-border m-0">
+              <a href="{{ path('index-mp-layout1') }}" class="menuzord-brand pull-left flip xs-pull-center mt-20 mb-10"><img alt="" src="images/logo-wide.png"></a>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-3 col-md-2">
+            <div class="widget no-border m-0">
+              <div class="mt-15 mb-10 text-right flip sm-text-center">
+                <div class="font-15 text-black-333 mb-5 font-weight-600"><i class="fa fa-envelope text-theme-colored font-18"></i> Mail Us Today</div>
+                <a href="#" class="font-12 text-gray"> info@yourdomain.com</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-3 col-md-2">
+            <div class="widget no-border m-0">
+              <div class="mt-15 mb-10 text-right flip sm-text-center">
+                <div class="font-15 text-black-333 mb-5 font-weight-600"><i class="fa fa-map-marker text-theme-colored font-18"></i> Company Location</div>
+                <a href="#" class="font-12 text-gray"> 121 King Street, Melbourne</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-3 col-md-2">
+            <div class="widget no-border m-0">
+              <div class="mt-15 mb-10 text-right flip sm-text-center">
+                <div class="font-15 text-black-333 mb-5 font-weight-600"><i class="fa fa-phone-square text-theme-colored font-18"></i> +(012) 345 6789</div>
+                <a href="#" class="font-12 text-gray"> Call us for more details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-nav">
+      <div class="header-nav-wrapper navbar-scrolltofixed bg-lighter">
+        <div class="container">
+          <nav id="menuzord" class="menuzord pull-left flip menuzord-responsive">
+            <ul class="menuzord-menu">
+              <li class="active"><a href="#home">Home</a>
+                <ul class="dropdown">
+                  <li><a href="#">Multi Page Layouts</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('index-mp-layout1') }}">Layout1</a></li>
+                      <li><a href="{{ path('index-mp-layout2') }}">Layout2</a></li>
+                      <li><a href="{{ path('index-mp-layout3') }}">Layout3</a></li>
+                      <li><a href="{{ path('index-mp-layout4') }}">Layout4</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Single Page Layouts</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('index-sp-layout1') }}">Layout1</a></li>
+                      <li><a href="{{ path('index-sp-layout2') }}">Layout2</a></li>
+                      <li><a href="{{ path('index-sp-layout3') }}">Layout3</a></li>
+                      <li><a href="{{ path('index-sp-layout4') }}">Layout4</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Boxed Layouts</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('index-boxed-mp-layout1') }}">Boxed Multi Page Layout1</a></li>
+                      <li><a href="{{ path('index-boxed-mp-layout2') }}">Boxed Multi Page Layout2</a></li>
+                      <li><a href="{{ path('index-boxed-mp-layout3') }}">Boxed Multi Page Layout3</a></li>
+                      <li><a href="{{ path('index-boxed-mp-layout4') }}">Boxed Multi Page Layout4</a></li>
+                      <li><a href="{{ path('index-boxed-sp-layout1') }}">Boxed Single Page Layout1</a></li>
+                      <li><a href="{{ path('index-boxed-sp-layout2') }}">Boxed Single Page Layout2</a></li>
+                      <li><a href="{{ path('index-boxed-sp-layout3') }}">Boxed Single Page Layout3</a></li>
+                      <li><a href="{{ path('index-boxed-sp-layout4') }}">Boxed Single Page Layout4</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">RTL Layouts</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('index-rtl-mp-layout1') }}">RTL Multi Page Layout1</a></li>
+                      <li><a href="{{ path('index-rtl-mp-layout2') }}">RTL Multi Page Layout2</a></li>
+                      <li><a href="{{ path('index-rtl-mp-layout3') }}">RTL Multi Page Layout3</a></li>
+                      <li><a href="{{ path('index-rtl-mp-layout4') }}">RTL Multi Page Layout4</a></li>
+                      <li><a href="{{ path('index-rtl-sp-layout1') }}">RTL Single Page Layout1</a></li>
+                      <li><a href="{{ path('index-rtl-sp-layout2') }}">RTL Single Page Layout2</a></li>
+                      <li><a href="{{ path('index-rtl-sp-layout3') }}">RTL Single Page Layout3</a></li>
+                      <li><a href="{{ path('index-rtl-sp-layout4') }}">RTL Single Page Layout4</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Dark Layouts</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('index-dark-mp-layout1') }}">Dark Multi Page Layout1</a></li>
+                      <li><a href="{{ path('index-dark-mp-layout2') }}">Dark Multi Page Layout2</a></li>
+                      <li><a href="{{ path('index-dark-mp-layout3') }}">Dark Multi Page Layout3</a></li>
+                      <li><a href="{{ path('index-dark-mp-layout4') }}">Dark Multi Page Layout4</a></li>
+                      <li><a href="{{ path('index-dark-sp-layout1') }}">Dark Single Page Layout1</a></li>
+                      <li><a href="{{ path('index-dark-sp-layout2') }}">Dark Single Page Layout2</a></li>
+                      <li><a href="{{ path('index-dark-sp-layout3') }}">Dark Single Page Layout3</a></li>
+                      <li><a href="{{ path('index-dark-sp-layout4') }}">Dark Single Page Layout4</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="{{ path('index-hot-shop-home') }}">Shop Home <span class="label label-warning">New</span></a></li>
+                  <li><a href="#">Home Variations <span class="label label-warning">New</span></a>
+                    <ul class="dropdown">
+                      <li><a href="#">Rev Slider</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('index-home-variation-revslider-style1') }}">Layout1</a></li>
+                          <li><a href="{{ path('index-home-variation-revslider-style2') }}">Layout2</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Maximage Slider</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('index-home-variation-maximageslider-style1') }}">Layout1</a></li>
+                          <li><a href="{{ path('index-home-variation-maximageslider-style2') }}">Layout2</a></li>
+                          <li><a href="{{ path('index-home-variation-maximageslider-style3') }}">Layout3</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="{{ path('index-home-variation-owl-carousel') }}">Owl Slider</a></li>
+                      <li><a href="{{ path('index-home-variation-typed-text') }}">Typed Text Layout</a></li>
+                      <li><a href="{{ path('index-home-variation-video-background') }}">Youtube Background Video</a></li>
+                      <li><a href="{{ path('index-home-variation-html5-video') }}">Html5 Background Video</a></li>
+                      <li><a href="{{ path('index-home-variation-bg-image-parallax') }}">Bg Image Parallax Layout</a></li>
+                      <li><a href="{{ path('index-home-variation-bg-static') }}">Bg Static Layout</a></li>
+                      <li><a href="#">Home Appointment Form</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('index-home-variation-appointment-form-style1') }}">Layout1</a></li>
+                          <li><a href="{{ path('index-home-variation-appointment-form-style2') }}">Layout2</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#">Features <span class="label label-warning">New</span></a>
+                <ul class="dropdown">
+                  <li><a href="{{ path('features-preloader') }}">Preloaders</a></li>
+                  <li><a href="#">Header</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('features-header-style1') }}">Header Style1</a></li>
+                      <li><a href="{{ path('features-header-style2') }}">Header Style2</a></li>
+                      <li><a href="{{ path('features-header-style3') }}">Header Style3</a></li>
+                      <li><a href="{{ path('features-header-style4') }}">Header Style4</a></li>
+                      <li><a href="{{ path('features-header-style5') }}">Header Style5</a></li>
+                      <li><a href="{{ path('features-header-style6') }}">Header Style6</a></li>
+                      <li><a href="{{ path('features-header-style7') }}">Header Style7</a></li>
+                      <li><a href="{{ path('features-header-vertical-nav') }}">Vertical Header</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Page Title</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('features-page-title-text-left') }}">Text Left</a></li>
+                      <li><a href="{{ path('features-page-title-text-center') }}">Text Center</a></li>
+                      <li><a href="{{ path('features-page-title-text-right') }}">Text Right</a></li>
+                      <li><a href="{{ path('features-page-title-mini-version') }}">Mini Version</a></li>
+                      <li><a href="{{ path('features-page-title-big-version') }}">Big Version</a></li>
+                      <li><a href="{{ path('features-page-title-extra-big-version') }}">Extra Big Version</a></li>
+                      <li><a href="{{ path('features-page-title-bg-white') }}">Bg White</a></li>
+                      <li><a href="{{ path('features-page-title-bg-image') }}">Bg Image</a></li>
+                      <li><a href="{{ path('features-page-title-bg-image-parallax') }}">Bg Image Parallax</a></li>
+                      <li><a href="{{ path('features-page-title-bg-video') }}">Bg Video</a></li>
+                      <li><a href="{{ path('features-page-title-full-transparent') }}">Full Transparent</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Side Push Panel</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('features-side-push-panel-left-overlay') }}">Left Overlay</a></li>
+                      <li><a href="{{ path('features-side-push-panel-left-push') }}">Left Push</a></li>
+                      <li><a href="{{ path('features-side-push-panel-right-overlay') }}">Right Overlay</a></li>
+                      <li><a href="{{ path('features-side-push-panel-right-push') }}">Right Push</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Sliders</a>
+                    <ul class="dropdown">
+                      <li><a href="#">Revolution Slider</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('features-home-revslider') }}">Revolution Slider</a></li>
+                          <li><a href="{{ path('features-rev-slider-premium-templates') }}">Revolution Slider All In One</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="{{ path('features-home-bg-image-slider') }}">Bg Image Slider</a></li>
+                      <li><a href="{{ path('features-home-owl-fullwidth-carousel') }}">Owl Fullwidth Carousel</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Form</a>
+                    <ul class="dropdown">
+                      <li><a href="#">Contact Form</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('page-contact-style1') }}">Contact style 1</a></li>
+                          <li><a href="{{ path('page-contact-style2') }}">Contact style 2</a></li>
+                          <li><a href="{{ path('page-contact-style3') }}">Contact style 3</a></li>
+                          <li><a href="{{ path('page-contact-style4') }}">Contact style 4</a></li>
+                          <li><a href="{{ path('page-contact5-with-multiple-marker') }}">Contact style 5 with multiple marker</a></li>
+                          <li><a href="{{ path('page-contact6-with-multiple-marker') }}">Contact style 6 with multiple marker</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Login/Register Form</a>
+                        <ul class="dropdown">
+                          <li><a href="#">Login/Register</a>
+                            <ul class="dropdown">
+                              <li><a href="{{ path('form-login-register-style1') }}">Form style 1</a></li>
+                              <li><a href="{{ path('form-login-register-style2') }}">Form style 2</a></li>
+                            </ul>
+                          </li>
+                          <li><a href="#">Login</a>
+                            <ul class="dropdown">
+                              <li><a href="{{ path('form-login-style1') }}">Form style 1</a></li>
+                              <li><a href="{{ path('form-login-style2') }}">Form style 2</a></li>
+                              <li><a href="{{ path('form-login-style3') }}">Form style 3</a></li>
+                            </ul>
+                          </li>
+                          <li><a href="#">Register</a>
+                            <ul class="dropdown">
+                              <li><a href="{{ path('form-register-style1') }}">Form style 1</a></li>
+                              <li><a href="{{ path('form-register-style2') }}">Form style 2</a></li>
+                              <li><a href="{{ path('form-register-style3') }}">Form style 3</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Subscribe Form</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('form-subscribe') }}">Form style 1</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Appointment Form</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('form-appointment-style1') }}">Form style 1</a></li>
+                          <li><a href="{{ path('form-appointment-style2') }}">Form style 2</a></li>
+                          <li><a href="{{ path('form-appointment-style3') }}">Form style 3</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Quick Contact Form</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('form-quick-contact-style1') }}">Form style 1</a></li>
+                          <li><a href="{{ path('form-quick-contact-style2') }}">Form style 2</a></li>
+                          <li><a href="{{ path('form-quick-contact-style3') }}">Form style 3</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Job Apply Form</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('form-job-apply-style1') }}">Form style 1</a></li>
+                          <li><a href="{{ path('form-job-apply-style2') }}">Form style 2</a></li>
+                          <li><a href="{{ path('form-job-apply-style3') }}">Form style 3</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Paypal Form</a>
+                    <ul class="dropdown">
+                      <li><a href="#">Donation Onetime</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('form-paypal-donate-onetime-style1') }}">Style1</a></li>
+                          <li><a href="{{ path('form-paypal-donate-onetime-style2') }}">Style2</a></li>
+                          <li><a href="{{ path('form-paypal-donate-onetime-style3') }}">Style3</a></li>
+                          <li><a href="{{ path('form-paypal-donate-onetime-style4') }}">Style4</a></li>
+                          <li><a href="{{ path('form-paypal-donate-onetime-style5') }}">Style5</a></li>
+                          <li><a href="{{ path('form-paypal-donate-onetime-style6') }}">Style6</a></li>
+                          <li><a href="{{ path('form-paypal-donate-onetime-style7') }}">Style7</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Donation Recurring</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('form-paypal-donate-recurring-style1') }}">Style1</a></li>
+                          <li><a href="{{ path('form-paypal-donate-recurring-style2') }}"> Style2</a></li>
+                          <li><a href="{{ path('form-paypal-donate-recurring-style3') }}">Style3</a></li>
+                          <li><a href="{{ path('form-paypal-donate-recurring-style4') }}">Style4</a></li>
+                          <li><a href="{{ path('form-paypal-donate-recurring-style5') }}">Style5</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Both Onetime/Recurring</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('form-paypal-donate-both-onetime-recurring-style1') }}">Style1</a></li>
+                          <li><a href="{{ path('form-paypal-donate-both-onetime-recurring-style2') }}">Style2</a></li>
+                          <li><a href="{{ path('form-paypal-donate-both-onetime-recurring-style3') }}">Style3</a></li>
+                          <li><a href="{{ path('form-paypal-donate-both-onetime-recurring-style4') }}">Style4</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="{{ path('form-paypal-cart-style1') }}">Cart Payment</a></li>
+                      <li><a href="{{ path('form-paypal-order-style1') }}">Order Payment Style1</a></li>
+                      <li><a href="{{ path('form-paypal-order-style2') }}">Order Payment Style2</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Popup Promo Box</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('features-popup-promo-box') }}">Default</a></li>
+                      <li><a href="{{ path('features-popup-promo-box-cookie-enabled') }}">Cookie Enabled</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Footer</a>
+                    <ul class="dropdown">
+                      <li><a href="features-footer-style1.html#footer">Footer Dark One</a></li>
+                      <li><a href="features-footer-style2.html#footer">Footer Dark Two</a></li>
+                      <li><a href="features-footer-style3.html#footer">Footer Dark Three</a></li>
+                      <li><a href="features-footer-style4.html#footer">Footer Dark Four</a></li>
+                      <li><a href="features-footer-style5.html#footer">Footer Dark Five</a></li>
+                      <li><a href="features-footer-style6.html#footer">Footer Dark Six</a></li>
+                      <li><a href="features-footer-style7.html#footer">Footer Dark Seven</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#">Pages</a>
+                <ul class="dropdown">
+                  <li><a href="#">About</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('page-about-style1') }}">About Style 1</a></li>
+                      <li><a href="{{ path('page-about-style2') }}">About Style 2</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Gallery</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('page-image-gallery') }}">Image Gallery</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('page-image-gallery-3col') }}">3 Columns</a></li>
+                          <li><a href="{{ path('page-image-gallery-4col') }}">4 Columns</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="{{ path('page-video-gallery') }}">Video Gallery</a>
+                        <ul class="dropdown">
+                          <li><a href="{{ path('page-video-gallery-3col') }}">3 Columns</a></li>
+                          <li><a href="{{ path('page-video-gallery-4col') }}">4 Columns</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Courses</a>
+                    <ul class="dropdown">                      
+                      <li><a href="{{ path('page-course-list-3col') }}">Course 3 Columns</a></li>
+                      <li><a href="{{ path('page-course-list-4col') }}">Course 4 Columns</a></li>
+                      <li><a href="{{ path('page-course-details') }}">Course Details</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#home">Trainers</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('page-trainers-style1') }}">Trainers style 1</a></li>
+                      <li><a href="{{ path('page-trainers-style2') }}">Trainers style 2</a></li>
+                      <li><a href="{{ path('page-trainer-details') }}">Trainer Details</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Our Horses</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('page-our-horses') }}">Horse List</a></li>
+                      <li><a href="{{ path('page-horse-details') }}">Horse Details</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="{{ path('page-riding-school') }}">Riding School</a></li>   
+                  <li><a href="{{ path('page-facilities') }}">Facilities</a></li>
+                  <li><a href="{{ path('page-events') }}">Events</a></li>
+                  <li><a href="{{ path('page-booking-form') }}">Booking Form</a></li>
+                  <li><a href="#">Pricing</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('page-pricing-style1') }}">Pricing style1</a></li>
+                      <li><a href="{{ path('page-pricing-style2') }}">Pricing style2</a></li>
+                    </ul>
+                  </li>                  
+                  <li><a href="#">FAQ</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('page-faq-style1') }}">FAQ Style1</a></li>
+                      <li><a href="{{ path('page-faq-style2') }}">FAQ Style2</a></li>
+                      <li><a href="{{ path('page-faq-style3') }}">FAQ Style3</a></li>
+                      <li><a href="{{ path('page-faq-style4') }}">FAQ Style4</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Page 404</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('page-404-style1') }}">Style1</a></li>
+                      <li><a href="{{ path('page-404-style2') }}">Style2</a></li>
+                      <li><a href="{{ path('page-404-style3') }}">Style3</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Under Construction</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('page-under-construction-style1') }}">Style1</a></li>
+                      <li><a href="{{ path('page-under-construction-style2') }}">Style2</a></li>
+                      <li><a href="{{ path('page-under-construction-style3') }}">Style3</a></li>
+                      <li><a href="{{ path('page-under-construction-style4') }}">Style4</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Coming Soon</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('page-coming-soon-style1') }}">Style1</a></li>
+                      <li><a href="{{ path('page-coming-soon-style2') }}">Style2</a></li>
+                      <li><a href="{{ path('page-coming-soon-style3') }}">Style3</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="{{ path('page-membership') }}">Membership</a></li>           
+              <li><a href="#">Shop</a>
+                <ul class="dropdown">
+                  <li><a href="{{ path('shop-category') }}">Category</a></li>
+                  <li><a href="{{ path('shop-category-sidebar') }}">Category Sidebar</a></li>
+                  <li><a href="{{ path('shop-product-details') }}">Product Details</a></li>
+                  <li><a href="{{ path('shop-cart') }}">Cart</a></li>
+                  <li><a href="{{ path('shop-checkout') }}">Checkout</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Blog</a>
+                <ul class="dropdown">
+                  <li><a href="#">Blog Classic</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('blog-classic-no-sidebar') }}">Blog Classic No Sidebar</a></li>
+                      <li><a href="{{ path('blog-classic-left-sidebar') }}">Blog Classic Left Sidebar</a></li>
+                      <li><a href="{{ path('blog-classic-right-sidebar') }}">Blog Classic Right Sidebar</a></li>
+                      <li><a href="{{ path('blog-classic-both-sidebar') }}">Blog Classic Both Sidebar</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Blog Grid</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('blog-grid-2-column') }}">Blog Grid 2 Column</a></li>
+                      <li><a href="{{ path('blog-grid-3-column') }}">Blog Grid 3 Column</a></li>
+                      <li><a href="{{ path('blog-grid-4-column') }}">Blog Grid 4 Column</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Blog Single</a>
+                    <ul class="dropdown">
+                      <li><a href="{{ path('blog-single-no-sidebar') }}">Blog Single No Sidebar</a></li>
+                      <li><a href="{{ path('blog-single-left-sidebar') }}">Blog Single Left Sidebar</a></li>
+                      <li><a href="{{ path('blog-single-right-sidebar') }}">Blog Single Right Sidebar</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#">Shortcodes <span class="label label-warning">New</span></a>
+                <div class="megamenu">
+                  <div class="megamenu-row">
+                    <div class="col3">
+                      <ul class="list-unstyled list-dashed">
+                        <li><a href="{{ path('shortcode-accordion') }}"><i class="fa fa-list-ul"></i> Accordion</a></li>
+                        <li><a href="{{ path('shortcode-alerts') }}"><i class="fa fa-exclamation-circle"></i> Alerts</a></li>
+                        <li><a href="{{ path('shortcode-animations') }}"><i class="fa fa-magic"></i> Animations</a></li>
+                        <li><a href="{{ path('shortcode-background-html5-video') }}"><i class="fa fa-video-camera"></i> HTML5 Background Video</a></li>
+                        <li><a href="{{ path('shortcode-blockquotes') }}"><i class="fa fa-quote-right"></i> Blockquotes</a></li>
+                        <li><a href="{{ path('shortcode-button-groups-and-dropdowns') }}"><i class="fa fa-link"></i> Button Groups</a></li>
+                        <li><a href="{{ path('shortcode-button-hover-effect') }}"><i class="fa fa-flag-o"></i> Button Hover Effect</a></li>
+                        <li><a href="{{ path('shortcode-buttons') }}"><i class="fa fa-external-link"></i> Buttons</a></li>
+                        <li><a href="{{ path('shortcode-call-to-actions') }}"><i class="fa fa-plus-square"></i> Call To Actions</a></li>
+                        <li><a href="{{ path('shortcode-charts') }}"><i class="fa fa-pie-chart"></i> Charts</a></li>
+                        <li><a href="{{ path('shortcode-columns-grids') }}"><i class="fa fa-columns"></i> Columns Grids</a></li>
+                        <li><a href="{{ path('shortcode-divider') }}"><i class="fa fa-indent"></i> Divider</a></li>
+                        <li><a href="{{ path('shortcode-dropcaps') }}"><i class="fa fa-bold"></i> Dropcaps</a></li>
+                        <li><a href="{{ path('shortcode-datetime-datepicker') }}"><i class="fa fa-calendar"></i> Date Picker</a></li>
+                        <li><a href="{{ path('shortcode-datetime-timepicker') }}"><i class="fa fa-calendar"></i> Time Picker</a></li>
+                      </ul>
+                    </div>
+                    <div class="col3">
+                      <ul class="list-unstyled list-dashed">
+                        <li><a href="{{ path('shortcode-datetime-datetimepicker') }}"><i class="fa fa-calendar"></i> Bootstrap Date-Time Picker</a></li>
+                        <li><a href="{{ path('shortcode-datetime-datepair') }}"><i class="fa fa-calendar"></i> Date Pair</a></li>
+                        <li><a href="{{ path('shortcode-flickr-feed') }}"><i class="fa fa-sliders"></i> Flickr Feed</a></li>
+                        <li><a href="{{ path('shortcode-flipbox') }}"><i class="fa fa-square"></i> Flipbox</a></li>
+                        <li><a href="{{ path('shortcode-forms') }}"><i class="fa fa-align-justify"></i> Forms</a></li>
+                        <li><a href="{{ path('shortcode-iconbox') }}"><i class="fa fa-unsorted"></i> Icon Box</a></li>
+                        <li><a href="{{ path('shortcode-icon-7stroke') }}"><i class="fa fa-circle-o"></i> Icons 7stroke</a></li>
+                        <li><a href="{{ path('shortcode-icon-elegant-icons') }}"><i class="fa fa-eye-slash"></i> Icons Elegant</a></li>
+                        <li><a href="{{ path('shortcode-icon-flat-color-icons') }}"><i class="fa fa-i-cursor"></i> Icons Flat Color</a></li>
+                        <li><a href="{{ path('shortcode-icon-fontawesome') }}"><i class="fa fa-fort-awesome"></i> Icons FontAwesome</a></li>
+                        <li><a href="{{ path('shortcode-icon-fontawesome-tutorial') }}"><i class="fa fa-fonticons"></i> Icons FontAwesome Tutorial</a></li>
+                        <li><a href="{{ path('shortcode-icon-strokegap') }}"><i class="fa fa-anchor"></i> Icons Strokegap</a></li>
+                        <li><a href="{{ path('shortcode-image-box') }}"><i class="fa fa-file-image-o"></i> Image Box</a></li>
+                        <li><a href="{{ path('shortcode-instagram') }}"><i class="fa fa-instagram"></i> Instagram Feed</a></li>
+                        <li><a href="{{ path('shortcode-labels-badges') }}"><i class="fa fa-check-square-o"></i> Labels Badges</a></li>
+                      </ul>
+                    </div>
+                    <div class="col3">
+                      <ul class="list-unstyled list-dashed">
+                        <li><a href="{{ path('shortcode-listgroup-panels') }}"><i class="fa fa-th-list"></i> Listgroup Panels</a></li>
+                        <li><a href="{{ path('shortcode-lists') }}"><i class="fa fa-list"></i> Lists</a></li>
+                        <li><a href="{{ path('shortcode-maps') }}"><i class="fa fa-map-o"></i> Maps</a></li>
+                        <li><a href="{{ path('shortcode-media-embed') }}"><i class="fa fa-play-circle-o"></i> Media Embed</a></li>
+                        <li><a href="{{ path('shortcode-modal-bootstrap') }}"><i class="fa fa-search-plus"></i> Modal</a></li>
+                        <li><a href="{{ path('shortcode-modal-lightbox') }}"><i class="fa fa-expand"></i> Lightbox</a></li>
+                        <li><a href="{{ path('shortcode-navigation') }}"><i class="fa fa-navicon"></i> Navigation</a></li>
+                        <li><a href="{{ path('shortcode-owl-carousel') }}"><i class="fa fa-sliders"></i> Owl Carousel</a></li>
+                        <li><a href="{{ path('shortcode-pagination') }}"><i class="fa fa-arrow-circle-o-right"></i> Pagination</a></li>
+                        <li><a href="{{ path('shortcode-progressbar') }}"><i class="fa fa-tasks"></i> Progress Bars</a></li>
+                        <li><a href="{{ path('shortcode-responsive') }}"><i class="fa fa-tablet"></i> Responsive</a></li>
+                        <li><a href="{{ path('shortcode-separator') }}"><i class="fa fa-minus-square-o"></i> Separator</a></li>
+                        <li><a href="{{ path('shortcode-sitemap') }}"><i class="fa fa-sitemap"></i> Sitemap</a></li>
+                        <li><a href="{{ path('shortcode-sliders') }}"><i class="fa fa-sliders"></i> Sliders</a></li>
+                        <li><a href="{{ path('shortcode-smoothscrolling') }}"><i class="fa fa-binoculars"></i> Smoothscrolling</a></li>
+                      </ul>
+                    </div>
+                    <div class="col3">
+                      <ul class="list-unstyled list-dashed">
+                        <li><a href="{{ path('shortcode-styled-icons') }}"><i class="fa fa-facebook-square"></i> Styled Icons</a></li>
+                        <li><a href="{{ path('shortcode-subscribe') }}"><i class="fa fa-user-plus"></i> Subscribe</a></li>
+                        <li><a href="{{ path('shortcode-tables') }}"><i class="fa fa-table"></i> Tables</a></li>
+                        <li><a href="{{ path('shortcode-tabs') }}"><i class="fa fa-indent"></i> Tabs</a></li>
+                        <li><a href="{{ path('shortcode-textblock') }}"><i class="fa fa-bold"></i> Textblock</a></li>
+                        <li><a href="{{ path('shortcode-thumbnails-carousels') }}"><i class="fa fa-sliders"></i> Thumbnails/carousels</a></li>
+                        <li><a href="{{ path('shortcode-title') }}"><i class="fa fa-text-height"></i> Title</a></li>
+                        <li><a href="{{ path('shortcode-timer-final-countdown') }}"><i class="fa fa-text-height"></i> Timer Final Countdown</a></li>
+                        <li><a href="{{ path('shortcode-timer-flipclock') }}"><i class="fa fa-text-height"></i> Timer Flipclock</a></li>
+                        <li><a href="{{ path('shortcode-timer-slick-circular') }}"><i class="fa fa-text-height"></i> Timer Slick Circular</a></li>
+                        <li><a href="{{ path('shortcode-twitter') }}"><i class="fa fa-twitter-square"></i> Twitter Feed</a></li>
+                        <li><a href="{{ path('shortcode-typography') }}"><i class="fa fa-font"></i> Typography</a></li>
+                        <li><a href="{{ path('shortcode-vertical-timeline') }}"><i class="fa fa-arrows-v"></i> Vertical Timeline</a></li>
+                        <li><a href="{{ path('shortcode-widgets') }}"><i class="fa fa-gift"></i> Widgets</a></li>
+                        <li><a href="{{ path('shortcode-working-process') }}"><i class="fa fa-exchange"></i> Working Process</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <ul class="pull-right flip hidden-sm hidden-xs">
+              <li>
+                <!-- Ajax Popup form Starts -->
+                <a class="btn btn-colored btn-flat top-left-triangle bg-theme-colored text-white font-14 ajaxload-popup p-10 mt-15 pr-30 pl-15" href="{{ path('reservation-form') }}">Get A quote Now</a>
+                <!-- Ajax Popup form End -->
+              </li>
+            </ul>
+            <div id="top-search-bar" class="collapse">
+              <div class="container">
+                <form role="search" action="#" class="search_form_top" method="get">
+                  <input type="text" placeholder="Type text and press Enter..." name="s" class="form-control" autocomplete="off">
+                  <span class="search-close"><i class="fa fa-search"></i></span>
+                </form>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Start main-content -->
+  <div class="main-content">
+
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1500x996">
+      <div class="container pt-60 pb-40">
+        <!-- Section Content -->
+        <div class="section-content pt-100">
+          <div class="row"> 
+            <div class="col-md-12">
+              <h3 class="title text-white">Flat Color SVG Icons</h3>
+              <ul class="breadcrumb white">
+                <li><a href="{{ path('index-mp-layout1') }}">Home</a></li>
+                <li class="active">Page Title</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="flat-color-images">
+              <div class="heading-line-bottom">
+                 <h4 class="heading-title">Photo and Video</h4>
+              </div>
+              <p>
+                <img alt="" src="images/flat-color-icons-svg/flash_on.svg"  title="flash_on.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/flash_off.svg"  title="flash_off.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/flash_auto.svg"  title="flash_auto.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/panorama.svg"  title="panorama.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/landscape.svg"  title="landscape.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/night_landscape.svg"  title="night_landscape.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/sports_mode.svg" title="sports_mode.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/portrait_mode.svg" title="portrait_mode.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/night_portrait.svg" title="night_portrait.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/close_up_mode.svg" title="close_up_mode.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/selfie.svg" title="selfie.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/gallery.svg" title="gallery.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/stack_of_photos.svg" title="stack_of_photos.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/add_image.svg" title="add_image.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/edit_image.svg" title="edit_image.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/remove_image.svg" title="remove_image.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/compact_camera.svg" title="compact_camera.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/multiple_cameras.svg" title="multiple_cameras.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/camera.svg" title="camera.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/slr_back_side.svg" title="slr_back_side.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/old_time_camera.svg" title="old_time_camera.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/camera_addon.svg" title="camera_addon.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/camera_identification.svg" title="camera_identification.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/start.svg" title="start.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/clapperboard.svg" title="clapperboard.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/film.svg" title="film.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/camcorder.svg" title="camcorder.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/camcorder_pro.svg" title="camcorder_pro.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/webcam.svg" title="webcam.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/integrated_webcam.svg" title="integrated_webcam.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/rotate_camera.svg" title="rotate_camera.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/switch_camera.svg" title="switch_camera.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/photo_reel.svg" title="photo_reel.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/film_reel.svg" title="film_reel.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/cable_release.svg" title="cable_release.svg"/>
+              </p>
+              <hr>
+
+              <div class="heading-line-bottom">
+                 <h4 class="heading-title">Very Basic</h4>
+              </div>
+              <p>
+                <img alt="" src="images/flat-color-icons-svg/home.svg" title="home.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/icons8_cup.svg" title="icons8_cup.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/globe.svg" title="globe.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/ok.svg" title="ok.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/checkmark.svg" title="checkmark.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/cancel.svg" title="cancel.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/synchronize.svg" title="synchronize.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/refresh.svg" title="refresh.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/download.svg" title="download.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/upload.svg" title="upload.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/empty_trash.svg" title="empty_trash.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/full_trash.svg" title="full_trash.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/folder.svg" title="folder.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/opened_folder.svg" title="opened_folder.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/file.svg" title="file.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/document.svg" title="document.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/audio_file.svg" title="audio_file.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/image_file.svg" title="image_file.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/video_file.svg" title="video_file.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/print.svg" title="print.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/music.svg" title="music.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/share.svg" title="share.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/cursor.svg" title="cursor.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/puzzle.svg" title="puzzle.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/unlock.svg" title="unlock.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/lock.svg" title="lock.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/idea.svg" title="idea.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/no_idea.svg" title="no_idea.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/link.svg" title="link.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/broken_link.svg" title="broken_link.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/rating.svg" title="rating.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/like_placeholder.svg" title="like_placeholder.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/like.svg" title="like.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/dislike.svg" title="dislike.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/info.svg" title="info.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/about.svg" title="about.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/picture.svg" title="picture.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/clock.svg" title="clock.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/alarm_clock.svg" title="alarm_clock.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/address_book.svg" title="address_book.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/contacts.svg" title="contacts.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/news.svg" title="news.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/bookmark.svg" title="bookmark.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/binoculars.svg" title="binoculars.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/search.svg" title="search.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/ruler.svg" title="ruler.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/services.svg" title="services.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/settings.svg" title="settings.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/support.svg" title="support.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/frame.svg" title="frame.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/menu.svg" title="menu.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/key.svg" title="key.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/calendar.svg" title="calendar.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/calculator.svg" title="calculator.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/minus.svg" title="minus.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/plus.svg" title="plus.svg"/>
+              </p>
+              <hr>
+
+              <div class="heading-line-bottom">
+                 <h4 class="heading-title">Business</h4>
+              </div>
+              <p>
+                <img alt="" src="images/flat-color-icons-svg/graduation_cap.svg" title="graduation_cap.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/briefcase.svg" title="briefcase.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/business.svg" title="business.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/signature.svg" title="signature.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/safe.svg" title="safe.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/advertising.svg" title="advertising.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/businessman.svg" title="businessman.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/businesswoman.svg" title="businesswoman.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/manager.svg" title="manager.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/online_support.svg" title="online_support.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/assistant.svg" title="assistant.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/customer_support.svg" title="customer_support.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/reading_ebook.svg" title="reading_ebook.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/reading.svg" title="reading.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/neutral_trading.svg" title="neutral_trading.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/bullish.svg" title="bullish.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/bearish.svg" title="bearish.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/high_priority.svg" title="high_priority.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/medium_priority.svg" title="medium_priority.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/low_priority.svg" title="low_priority.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/make_decision.svg" title="make_decision.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/decision.svg" title="decision.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/good_decision.svg" title="good_decision.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/neutral_decision.svg" title="neutral_decision.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/bad_decision.svg" title="bad_decision.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/approve.svg" title="approve.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/disapprove.svg" title="disapprove.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/podium_without_speaker.svg" title="podium_without_speaker.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/podium_with_speaker.svg" title="podium_with_speaker.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/podium_with_audience.svg" title="podium_with_audience.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/video_projector.svg" title="video_projector.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/statistics.svg" title="statistics.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/collaboration.svg" title="collaboration.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/voice_presentation.svg" title="voice_presentation.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/conference_call.svg" title="conference_call.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/comments.svg" title="comments.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/faq.svg" title="faq.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/reuse.svg" title="reuse.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/organization.svg" title="organization.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/department.svg" title="department.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/library.svg" title="library.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/shop.svg" title="shop.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/self_service_kiosk.svg" title="self_service_kiosk.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/donate.svg" title="donate.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/currency_exchange.svg" title="currency_exchange.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/debt.svg" title="debt.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/sales_performance.svg" title="sales_performance.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/invite.svg" title="invite.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/money_transfer.svg" title="money_transfer.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/feedback.svg" title="feedback.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/approval.svg" title="approval.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/paid.svg" title="paid.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/in_transit.svg" title="in_transit.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/shipped.svg" title="shipped.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/package.svg" title="package.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/planner.svg" title="planner.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/overtime.svg" title="overtime.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/leave.svg" title="leave.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/expired.svg" title="expired.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/process.svg" title="process.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/diploma_1.svg" title="diploma_1.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/diploma_2.svg" title="diploma_2.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/business_contact.svg" title="business_contact.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/survey.svg" title="survey.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/inspection.svg" title="inspection.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/rules.svg" title="rules.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/todo_list.svg" title="todo_list.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/ratings.svg" title="ratings.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/questions.svg" title="questions.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/answers.svg" title="answers.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/fine_print.svg" title="fine_print.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/candle_sticks.svg" title="candle_sticks.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/serial_tasks.svg" title="serial_tasks.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/parallel_tasks.svg" title="parallel_tasks.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/tree_structure.svg" title="tree_structure.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/org_unit.svg" title="org_unit.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/privacy.svg" title="privacy.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/disclaimer.svg" title="disclaimer.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/callback.svg" title="callback.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/service_mark.svg" title="service_mark.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/registered_trademark.svg" title="registered_trademark.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/trademark.svg" title="trademark.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/copyright.svg" title="copyright.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/copyleft.svg" title="copyleft.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/sound_recording_copyright.svg" title="sound_recording_copyright.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/butting_in.svg" title="butting_in.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/multiple_inputs.svg" title="multiple_inputs.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/collect.svg" title="collect.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/internal.svg" title="internal.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/external.svg" title="external.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/vip.svg" title="vip.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/light_at_the_end_of_tunnel.svg" title="light_at_the_end_of_tunnel.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/entering_heaven_alive.svg" title="entering_heaven_alive.svg"/>
+              </p>
+              <hr>
+
+              <div class="heading-line-bottom">
+                 <h4 class="heading-title">Industry</h4>
+              </div>
+              <p>
+                <img alt="" src="images/flat-color-icons-svg/biomass.svg" title="biomass.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/display.svg" title="display.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/do_not_inhale.svg" title="do_not_inhale.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/factory.svg" title="factory.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/factory_breakdown.svg" title="factory_breakdown.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/crystal_oscillator.svg" title="crystal_oscillator.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/capacitor.svg" title="capacitor.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/electricity.svg" title="electricity.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/electro_devices.svg" title="electro_devices.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/electrical_sensor.svg" title="electrical_sensor.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/electrical_threshold.svg" title="electrical_threshold.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/automotive.svg" title="automotive.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/feed_in.svg" title="feed_in.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/dam.svg" title="dam.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/biotech.svg" title="biotech.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/advance.svg" title="advance.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/cloth.svg" title="cloth.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/electronics.svg" title="electronics.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/deployment.svg" title="deployment.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/automatic.svg" title="automatic.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/do_not_insert.svg" title="do_not_insert.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/do_not_mix.svg" title="do_not_mix.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/biohazard.svg" title="biohazard.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/circuit.svg" title="circuit.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/engineering.svg" title="engineering.svg"/>
+
+              </p>
+              <hr>
+
+              <div class="heading-line-bottom">
+                 <h4 class="heading-title">Mobile</h4>
+              </div>
+              <p>
+                <img alt="" src="images/flat-color-icons-svg/cell_phone.svg" title="cell_phone.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/iphone.svg" title="iphone.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/ipad.svg" title="ipad.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/phone_android.svg" title="phone_android.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/tablet_android.svg" title="tablet_android.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/nook.svg" title="nook.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/kindle.svg" title="kindle.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/two_smartphones.svg" title="two_smartphones.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/multiple_devices.svg" title="multiple_devices.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/multiple_smartphones.svg" title="multiple_smartphones.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/smartphone_tablet.svg" title="smartphone_tablet.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/touchscreen_smartphone.svg" title="touchscreen_smartphone.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/sim_card.svg" title="sim_card.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/sim_card_chip.svg" title="sim_card_chip.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/sms.svg" title="sms.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/mms.svg" title="mms.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/charge_battery.svg" title="charge_battery.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/full_battery.svg" title="full_battery.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/high_battery.svg" title="high_battery.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/middle_battery.svg" title="middle_battery.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/low_battery.svg" title="low_battery.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/empty_battery.svg" title="empty_battery.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/phone.svg" title="phone.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/missed_call.svg" title="missed_call.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/end_call.svg" title="end_call.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/call_transfer.svg" title="call_transfer.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/video_call.svg" title="video_call.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/no_video.svg" title="no_video.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/rotate_to_portrait.svg" title="rotate_to_portrait.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/lock_portrait.svg" title="lock_portrait.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/rotate_to_landscape.svg" title="rotate_to_landscape.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/lock_landscape.svg" title="lock_landscape.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/voicemail.svg" title="voicemail.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/speaker.svg" title="speaker.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/headset.svg" title="headset.svg"/>
+              </p>
+              <hr>
+
+              <div class="heading-line-bottom">
+                 <h4 class="heading-title">Arrows</h4>
+              </div>
+              <p>
+                <img alt="" src="images/flat-color-icons-svg/left_up.svg" title="left_up.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/up.svg" title="up.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/right_up.svg" title="right_up.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/left.svg" title="left.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/right.svg" title="right.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/left_down.svg" title="left_down.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/down.svg" title="down.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/right_down.svg" title="right_down.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/collapse.svg" title="collapse.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/previous.svg" title="previous.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/next.svg" title="next.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/expand.svg" title="expand.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/left_down2.svg" title="left_down2.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/up_left.svg" title="up_left.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/down_right.svg" title="down_right.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/right_up2.svg" title="right_up2.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/up_right.svg" title="up_right.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/right_down2.svg" title="right_down2.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/left_up2.svg" title="left_up2.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/down_left.svg" title="down_left.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/undo.svg" title="undo.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/redo.svg" title="redo.svg"/>
+              </p>
+              <hr>
+
+              <div class="heading-line-bottom">
+                 <h4 class="heading-title">Data</h4>
+              </div>
+              <p>
+                <img alt="" src="images/flat-color-icons-svg/filing_cabinet.svg" title="filing_cabinet.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/database.svg" title="database.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/accept_database.svg" title="accept_database.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/add_database.svg" title="add_database.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/delete_database.svg" title="delete_database.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/data_backup.svg" title="data_backup.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/data_recovery.svg" title="data_recovery.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/data_configuration.svg" title="data_configuration.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/data_encryption.svg" title="data_encryption.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/data_protection.svg" title="data_protection.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/grid.svg" title="grid.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/data_sheet.svg" title="data_sheet.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/add_column.svg" title="add_column.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/delete_column.svg" title="delete_column.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/add_row.svg" title="add_row.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/delete_row.svg" title="delete_row.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/generic_sorting_asc.svg" title="generic_sorting_asc.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/generic_sorting_desc.svg" title="generic_sorting_desc.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/alphabetical_sorting_az.svg" title="alphabetical_sorting_az.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/alphabetical_sorting_za.svg" title="alphabetical_sorting_za.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/numerical_sorting_21.svg" title="numerical_sorting_21.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/numerical_sorting_12.svg" title="numerical_sorting_12.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/empty_filter.svg" title="empty_filter.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/filled_filter.svg" title="filled_filter.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/clear_filters.svg" title="clear_filters.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/pie_chart.svg" title="pie_chart.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/radar_plot.svg" title="radar_plot.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/heat_map.svg" title="heat_map.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/timeline.svg" title="timeline.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/bar_chart.svg" title="bar_chart.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/area_chart.svg" title="area_chart.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/scatter_plot.svg" title="scatter_plot.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/doughnut_chart.svg" title="doughnut_chart.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/combo_chart.svg" title="combo_chart.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/flow_chart.svg" title="flow_chart.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/line_chart.svg" title="line_chart.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/genealogy.svg" title="genealogy.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/mind_map.svg" title="mind_map.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/workflow.svg" title="workflow.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/positive_dynamic.svg" title="positive_dynamic.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/negative_dynamic.svg" title="negative_dynamic.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/export.svg" title="export.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/import.svg" title="import.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/list.svg" title="list.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/template.svg" title="template.svg"/>
+                <img alt="" src="images/flat-color-icons-svg/view_details.svg" title="view_details.svg"/>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      /* fonts border style */
+
+      .flat-color-images img {
+        width: 48px;
+        height: 48px;
+        margin: 1rem;
+      }
+    </style>
+    </section>
+  <!-- end main-content -->
+  </div>
+  
+  <!-- Footer -->
+  <footer id="footer">
+    <section class="divider layer-overlay overlay-dark-8" data-bg-img="http://placehold.it/1500x996">
+      <div class="container pt-60 pb-30">
+        <div class="row">
+          <div class="col-sm-6 col-md-3">
+            <div class="widget dark">
+              <img class="mt-5 mb-10" alt="" src="images/logo-wide-white.png">
+              <p>203, Envato Labs, Behind Alis Steet, Melbourne, Australia.</p>
+              <ul class="list-inline mt-5">
+                <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-colored mr-5"></i> <a class="text-gray" href="#">123-456-789</a> </li>
+                <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-colored mr-5"></i> <a class="text-gray" href="#">contact@yourdomain.com</a> </li>
+              </ul>            
+              <h5 class="widget-title mt-10 mb-10">Connect With Us</h5>
+              <ul class="styled-icons icon-sm icon-bordered icon-theme-colored">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="widget dark">
+              <h4 class="widget-title line-bottom-theme-colored">Useful Links</h4>
+              <ul class="list angle-double-right list-border">
+                <li><a href="{{ path('page-about-style1') }}">About</a></li>
+                <li><a href="{{ path('page-membership') }}">Membership</a></li>
+                <li><a href="{{ path('page-riding-school') }}">Riding School</a></li>
+                <li><a href="{{ path('page-our-horses') }}">Our Horses</a></li>
+                <li><a href="{{ path('shop-category-sidebar') }}">Shop</a></li>              
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="widget dark">            
+              <h4 class="widget-title line-bottom-no-border">Photos from Flickr</h4>
+              <div id="flickr-feed" class="clearfix mt-30">
+                <!-- Flickr Link -->
+                <script src="{{ asset('http://www.flickr.com/badge_code_v2.gne?count=9&amp;display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=52617155@N08') }}"></script>
+                </script>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="widget dark">
+              <h4 class="widget-title line-bottom-theme-colored">Opening Hours</h4>
+              <div class="opening-hourse">
+                <ul class="list list-border text-gray-darkgray">
+                  <li class="clearfix"> <span><i class="fa fa-clock-o mr-5"></i> Mond -Tuesday :</span>
+                    <div class="value pull-right flip"> 9.00 am - 10.00 pm </div>
+                  </li>
+                  <li class="clearfix"> <span><i class="fa fa-clock-o mr-5"></i> Wed - Thurs :  </span>
+                    <div class="value pull-right flip"> 10.00 am - 8.00 pm </div>
+                  </li>
+                  <li class="clearfix"> <span class="text-theme-colored"><i class="fa fa-clock-o mr-5"></i> Friday : </span>
+                    <div class="value pull-right flip text-theme-colored"> 10.00 am - 6.00 pm </div>
+                  </li>
+                  <li class="clearfix"> <span><i class="fa fa-clock-o mr-5"></i> Saturday : </span>
+                    <div class="value pull-right flip"> 2.00 pm - 8.00 pm </div>
+                  </li>
+                  <li class="clearfix"> <span><i class="fa fa-clock-o mr-5"></i> Sunday :</span>
+                    <div class="value pull-right flip"> <span class="text-highlight bg-theme-colored text-white">Colsed</span>  </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container-fluid p-20" data-bg-color="#253944">
+        <div class="row text-center">
+          <div class="col-md-12">
+            <p class="text-white font-11 m-0">Copyright &copy;2016 ThemeMascot. All Rights Reserved</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+  <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+</div>
+<!-- end wrapper -->
+
+<!-- Footer Scripts -->
+<!-- JS | Custom script for all pages -->
+<script src="{{ asset('js/custom.js') }}"></script></script>
+
+</body>
+</html>
