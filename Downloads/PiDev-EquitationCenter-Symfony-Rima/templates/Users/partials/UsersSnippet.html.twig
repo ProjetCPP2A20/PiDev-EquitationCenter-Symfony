@@ -1,0 +1,83 @@
+<table id="datatableactivities" class="w-full text-left -mt-2 border-separate border-spacing-y-[10px]">
+
+    <thead class="">
+    <tr class="">
+      <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">Prénom</th>
+      <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">Nom</th>
+      <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">Email</th>
+      <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">Mot de passe</th>
+      <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">Role</th>
+      <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">Téléphone</th>
+      <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">Adresse</th>
+      <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
+        IMAGES
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+      <tr class="intro-x" id="row-id-{{ user.id }}">
+
+        <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+          <a class="whitespace-nowrap font-medium" href="">
+            {{user.name }}
+          </a>
+        </td>
+        <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+          <a class="whitespace-nowrap font-medium" href="">
+            {{user.lastname }}
+          </a>
+        </td>
+        <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+          <a class="whitespace-nowrap font-medium" href="">
+            {{user.email }}
+          </a>
+        </td>
+        <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+          {{ user.password }}
+        </td>
+        <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+            {{ user.roles|first }}
+        </td>
+        <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+          {{ user.numTel }}
+        </td>
+        <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+          {{ user.address }}
+        </td>
+        <td class="px-5 py-3 border-b dark:border-darkmode-300 box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+          <div class="flex">
+            <div class="image-fit zoom-in h-10 w-10">
+              <img src="data:image/png;base64,{{ user.imageData }}" alt="Image"/>
+            </div>
+          </div>
+        </td>
+            <td class="px-5 py-3 border-b dark:border-darkmode-300 box w-56 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 before:absolute before:inset-y-0 before:left-0 before:my-auto before:block before:h-8 before:w-px before:bg-slate-200 before:dark:bg-darkmode-400">
+                <div class="flex items-center justify-center">
+                    <a  onclick="loadData([
+                            '{{ user.id }}',
+                            '{{ user.name }}',
+                            '{{ user.lastname }}',
+                            '{{ user.email }}',
+                            '{{ user.password}}',
+                            '{{ user.role}}',
+                            '{{ user.numTel }}',
+                             '{{ user.address }}',
+                      '{{ user.imageData }}'
+
+                      ])" data-user="{{ user.id }},{{ user.name }},{{ user.lastname }},{{ user.email }},{{ user.password }},{{ user.role}},{{ user.numTel }},{{ user.address }},{{ user.imageData}}"  class="edit-link mr-3 flex items-center" href="#" data-tw-merge data-tw-toggle="modal" data-tw-target="#basic-modal-preview" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-square" class="lucide lucide-check-square stroke-1.5 mr-1 h-4 w-4"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                        Edit
+                    </a>
+                    <a class="flex items-center text-danger delete-button"   data-user-id="{{ user.id }}"  data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trash" class="lucide lucide-trash stroke-1.5 mr-1 h-4 w-4"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+                        Delete
+                    </a>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+
+
+    </tbody>
+</table>
