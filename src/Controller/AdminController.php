@@ -8,6 +8,7 @@ use App\Form\ActivitySessionType;
 use App\Form\ActivityType;
 use App\Repository\ActivityRepository;
 use App\Repository\ActivitysessionRepository;
+use App\Repository\UsersRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -20,10 +21,29 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     #[Route('/admin', name: 'app_admin')]
-    public function index(): Response
+    public function index(ActivitysessionRepository $activitysessionRepository,ActivityRepository $activityRepository,UsersRepository $usersRepository,EntityManagerInterface $entityManager): Response
     {
+        $sessions = $activitysessionRepository->findAll();
+        $users = $usersRepository->findAll();
+        $activities = $activityRepository->findAll();
+    /*    $query = $entityManager->createQuery('
+    SELECT ua.activityid, COUNT(ua.id) AS linkCount
+    FROM App\Entity\Useractivity ua
+    GROUP BY ua.activityid
+    ORDER BY linkCount DESC
+');*/
+
+
+
+       // $query->setMaxResults(3);
+
+     //   $topActivities = $query->getResult();
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
+            'sessions' => $sessions,
+            'activities' => $activities,
+            'users' => $users,
+   //         'topactivities' => $topActivities
         ]);
     }
 
@@ -68,7 +88,6 @@ class AdminController extends AbstractController
             $activities,
             $page,
             10
-
         );
 
 
@@ -309,15 +328,16 @@ class AdminController extends AbstractController
     }
     // Edit session API function to edit a session
     #[Route('/api/session/edit/', name: 'app_admin_session_edit', methods: ['POST'])]
-    public function editSession(Request $request,EntityManagerInterface $entityManager,ActivitysessionRepository $activitysessionRepository): Response
+    public function editSession(ActivityRepository $activityRepository,Request $request,EntityManagerInterface $entityManager,ActivitysessionRepository $activitysessionRepository): Response
     {
         $data = json_decode($request->getContent(), true);
         $sessionId = $data['id'];
         $session = $activitysessionRepository->find($sessionId);
-
         $session->setWeekday($data['weekday']);
         $session->setStarttime(new DateTime($data['starttime']));
         $session->setEndtime(new DateTime($data['endtime']));
+        $activity = $activityRepository->find($data['activityid']);
+        $session->setActivityid($activity);
 
         $entityManager->persist($session);
         $entityManager->flush();

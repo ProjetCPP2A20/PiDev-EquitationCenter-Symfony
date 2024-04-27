@@ -1,10 +1,9 @@
 <html><!-- [Head] start --><!-- Mirrored from ableproadmin.com/application/calendar.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Nov 2023 11:47:19 GMT --><head>
-    <title>Calendar | Able Pro Dashboard Template</title>
+    <title>Sessions Calendar | Pégase</title>
     <!-- [Meta] -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Able Pro is trending dashboard template made using Bootstrap 5 design framework. Able Pro is available in Bootstrap, React, CodeIgniter, Angular,  and .net Technologies.">
     <meta name="keywords" content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard">
     <meta name="author" content="Phoenixcoded">
 
@@ -217,17 +216,7 @@
 </div>
 
 <!-- [ Main Content ] end -->
-<footer class="pc-footer">
-    <div class="footer-wrapper container-fluid">
-        <div class="row">
-            <div class="col my-1">
-                <p class="m-0">Able Pro ♥ crafted by Team <a href="https://themeforest.net/user/phoenixcoded" target="_blank">Phoenixcoded</a></p>
-            </div>
-            <div class="col-auto my-1">
-            </div>
-        </div>
-    </div>
-</footer>
+
 <!-- Required Js -->
 <script src="/../assets/js/plugins/popper.min.js"></script>
 <script src="/../assets/js/plugins/simplebar.min.js"></script>
@@ -1457,6 +1446,8 @@
                     description: activityObject.description,
                     actid:activitySessionID
                 });
+                calendevent.remove();
+
                 Swal.fire({
                     customClass: {
                         confirmButton: 'btn btn-light-primary'
@@ -1506,7 +1497,7 @@
                     allDay: false,
                     description: activityObject.description,
                     actid:activitySessionID
-                })
+                });
                 document.getElementById('pc-e-btn-text').innerHTML = '<i class="align-text-bottom me-1 ti ti-calendar-plus"></i> Add';
                 document.querySelector('#pc_event_add').setAttribute('data-pc-action', 'add');
                 Swal.fire({

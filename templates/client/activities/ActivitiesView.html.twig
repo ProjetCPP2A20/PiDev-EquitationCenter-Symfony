@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+{{ include('client/head.html.twig') }}
+<body class="">
+<div id="wrapper" class="clearfix">
+    <!-- preloader -->
+    <div id="preloader">
+        <div id="spinner" class="spinner large-icon">
+            <img alt="" src="images/preloaders/13.gif">
+        </div>
+        <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
+    </div>
+
+    <!-- Header -->
+ {{ include('client/header.html.twig') }}
+    <!-- Start main-content -->
+    <div class="main-content">
+
+        <!-- Section: inner-header -->
+        <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1500x996">
+            <div class="container pt-90 pb-50">
+                <!-- Section Content -->
+                <div class="section-content pt-100">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title text-white">Available Activities List</h3>
+                            <ul class="list-inline text-white">
+                                <li>Home /</li>
+                                <li><span class="text-gray">Activities</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="row multi-row-clearfix">
+                    {% for activity in activities %}
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                        <div class="courses maxwidth500 mb-30">
+                            <div class="courses-thumb">
+                                <img class="img-fullwidth" src="data:image/png;base64,{{ activity.getImagedata }}" alt="">
+                                <span>{{ activity.price }} </span>
+                            </div>
+                            <h3>{{ activity.title }}</h3>
+                            <p>{{activity.description}}</p>
+                            <a href="{{ path('app_activity_view', {'id' : activity.id}) }}" class="text-theme-colored font-13 font-weight-600">Activity Details →</a>
+                        </div>
+                    </div>
+                     {% endfor %}
+
+                </div>
+            </div>
+        </section>
+        <!-- end main-content -->
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <section class="divider layer-overlay overlay-dark-8" data-bg-img="http://placehold.it/1500x996">
+            <div class="container pt-60 pb-30">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget dark">
+                            <img class="mt-5 mb-10" alt="" src="images/logo-wide-white.png">
+                            <p>203, Envato Labs, Behind Alis Steet, Melbourne, Australia.</p>
+                            <ul class="list-inline mt-5">
+                                <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-colored mr-5"></i> <a class="text-gray" href="#">123-456-789</a> </li>
+                                <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-colored mr-5"></i> <a class="text-gray" href="#">contact@yourdomain.com</a> </li>
+                            </ul>
+                            <h5 class="widget-title mt-10 mb-10">Connect With Us</h5>
+                            <ul class="styled-icons icon-sm icon-bordered icon-theme-colored">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget dark">
+                            <h4 class="widget-title line-bottom-theme-colored">Useful Links</h4>
+                            <ul class="list angle-double-right list-border">
+                                <li><a href="{{ path('page-about-style1') }}">About</a></li>
+                                <li><a href="{{ path('page-membership') }}">Membership</a></li>
+                                <li><a href="{{ path('page-riding-school') }}">Riding School</a></li>
+                                <li><a href="{{ path('page-our-horses') }}">Our Horses</a></li>
+                                <li><a href="{{ path('shop-category-sidebar') }}">Shop</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget dark">
+                            <h4 class="widget-title line-bottom-no-border">Photos from Flickr</h4>
+                            <div id="flickr-feed" class="clearfix mt-30">
+                                <!-- Flickr Link -->
+                                <script src="{{ asset('http://www.flickr.com/badge_code_v2.gne?count=9&amp;display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=52617155@N08') }}"></script>
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget dark">
+                            <h4 class="widget-title line-bottom-theme-colored">Opening Hours</h4>
+                            <div class="opening-hourse">
+                                <ul class="list list-border text-gray-darkgray">
+                                    <li class="clearfix"> <span><i class="fa fa-clock-o mr-5"></i> Mond -Tuesday :</span>
+                                        <div class="value pull-right flip"> 9.00 am - 10.00 pm </div>
+                                    </li>
+                                    <li class="clearfix"> <span><i class="fa fa-clock-o mr-5"></i> Wed - Thurs :  </span>
+                                        <div class="value pull-right flip"> 10.00 am - 8.00 pm </div>
+                                    </li>
+                                    <li class="clearfix"> <span class="text-theme-colored"><i class="fa fa-clock-o mr-5"></i> Friday : </span>
+                                        <div class="value pull-right flip text-theme-colored"> 10.00 am - 6.00 pm </div>
+                                    </li>
+                                    <li class="clearfix"> <span><i class="fa fa-clock-o mr-5"></i> Saturday : </span>
+                                        <div class="value pull-right flip"> 2.00 pm - 8.00 pm </div>
+                                    </li>
+                                    <li class="clearfix"> <span><i class="fa fa-clock-o mr-5"></i> Sunday :</span>
+                                        <div class="value pull-right flip"> <span class="text-highlight bg-theme-colored text-white">Colsed</span>  </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container-fluid p-20" data-bg-color="#253944">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <p class="text-white font-11 m-0">Copyright &copy;2016 ThemeMascot. All Rights Reserved</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+</div>
+<!-- end wrapper -->
+
+<!-- Footer Scripts -->
+<!-- JS | Custom script for all pages -->
+<script src="{{ asset('js/custom.js') }}"></script></script>
+
+</body>
+</html>

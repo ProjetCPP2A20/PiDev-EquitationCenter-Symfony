@@ -22,7 +22,7 @@ class Users
     #[ORM\Column(name: "name", type: "string", length: 255, nullable: false)]
     private string $name;
 
-    #[ORM\Column(name: "role", type: "string", length: 50, nullable: false)]
+    #[ORM\Column(name: "roles", type: "string", length: 50, nullable: false)]
     private string $role;
 
     #[ORM\Column(name: "lastname", type: "string", length: 255, nullable: false)]
@@ -132,6 +132,11 @@ class Users
 
     public function getImagedata()
     {
+        if (is_resource($this->imagedata)) {
+            rewind($this->imagedata);
+            $data = stream_get_contents($this->imagedata);
+            return base64_encode($data);
+        }
         return $this->imagedata;
     }
 

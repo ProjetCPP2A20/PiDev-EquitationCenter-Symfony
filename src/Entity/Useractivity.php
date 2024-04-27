@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table(name: "useractivity", indexes: [
@@ -29,6 +30,9 @@ class Useractivity
     #[ORM\ManyToOne(targetEntity: Activity::class)]
     #[ORM\JoinColumn(name: "ActivityId", referencedColumnName: "id")]
     private ?Activity $activityid = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $feedbackDate = null;
 
     // Getters and setters
 
@@ -78,6 +82,18 @@ class Useractivity
     public function setActivityid(?Activity $activityid): self
     {
         $this->activityid = $activityid;
+        return $this;
+    }
+
+    public function getFeedbackDate(): ?\DateTimeInterface
+    {
+        return $this->feedbackDate;
+    }
+
+    public function setFeedbackDate(?\DateTimeInterface $feedbackDate): static
+    {
+        $this->feedbackDate = $feedbackDate;
+
         return $this;
     }
 }
