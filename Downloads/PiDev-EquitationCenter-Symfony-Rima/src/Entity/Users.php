@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Table(name: "users")]
 #[ORM\Entity]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
   #[ORM\Column(name: "id", type: "integer", nullable: false)]
@@ -74,15 +76,19 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
   #[Assert\NotBlank(message: "image requis")]
   private $imagedata;
 
-  #[ORM\Column(name: "hash", type: "string", length: 255, nullable: false)]
-  private string $hash;
 
+ // #[ORM\Column(type: "boolean", options: ['default' => false])]
+ // private ?bool $isVerified = false;
+  #[ORM\Column(type: 'boolean')]
+  private $isVerified = false;
   #[ORM\Column(name: "salt", type: "binary", nullable: false)]
   private $salt;
 
   #[ORM\Column(name: "dateJoined", type: "date", nullable: false)]
   #[Assert\NotBlank(message: "Date requis")]
   private \DateTime $datejoined;
+
+
 
   // Getters and setters...
 
@@ -197,16 +203,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     }
   }
 
-  public function getHash(): ?string
-  {
-    return $this->hash;
-  }
 
-  public function setHash(string $hash): self
-  {
-    $this->hash = $hash;
-    return $this;
-  }
+
 
   public function getSalt()
   {
@@ -281,6 +279,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
   public function __call(string $name, array $arguments)
   {
     // TODO: Implement @method string getUserIdentifier()
+  }
+
+  public function isVerified(): bool
+  {
+      return $this->isVerified;
+  }
+
+  public function setIsVerified(bool $isVerified): static
+  {
+      $this->isVerified = $isVerified;
+
+      return $this;
   }
 }
 

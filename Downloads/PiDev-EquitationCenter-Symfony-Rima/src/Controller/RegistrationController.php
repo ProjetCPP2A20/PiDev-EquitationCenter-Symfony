@@ -3,64 +3,82 @@
 namespace App\Controller;
 
 use App\Entity\Users;
-use App\Form\RegisterFormType;
-use App\Form\UserType;
+use App\Form\RegistrationFormType;
+use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
+use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
 {
-    public function index(): Response
+    private EmailVerifier $emailVerifier;
+
+    public function __construct(EmailVerifier $emailVerifier)
     {
-        return $this->render('Users/form-login-register-style2.twig', [
-            'controller_name' => 'RegistrationController',
-        ]);
+        $this->emailVerifier = $emailVerifier;
     }
 
     #[Route('/register', name: 'app_register')]
-
-    public function register (Request $request, EntityManagerInterface $entityManager)
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new Users();
-        $form = $this->createForm(RegisterFormType::class, $user);
+        $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-      if ($form->isSubmitted()&& !$form->isValid()) {
-        dd($form->getErrors(true));
-        return $this->render('Users/form-login-register-style2.twig', [
-          'registrationForm' => $form->createView(),
-        ]);
-      }
-        if ($form->isSubmitted()) {
 
-          $uploadedFile=$request->files->get('user')['imagedata']->getPathname();
-          if ($uploadedFile)
-            // Read the binary data from the uploaded file
-            $binaryData = file_get_contents($uploadedFile);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
 
-
-            $user->setImagedata($binaryData);
-          $session = new Session();
-          $session->set('user', $user);
-          $user->setRole( "Client");
-            $entityManager->persist($user);
-            $user->setPassword($form->get('password')->getViewData());
             $entityManager->persist($user);
             $entityManager->flush();
-            return $this->render('Users/enigma-side-menu-login-page.twig', ['error' => 'User created successfully.','last_username' => $user->getEmail()]);
 
+            // generate a signed url and email it to the user
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                (new TemplatedEmail())
+                    ->from(new Address('rima.benabdallah@fsb.ucar.tn', 'PEGASE'))
+                    ->to($user->getEmail())
+                    ->subject('Please Confirm your Email')
+                    ->htmlTemplate('registration/confirmation_email.html.twig')
+            );
+            // do anything else you need here, like send an email
+
+            return $this->redirectToRoute('index-dark-mp-layout1');
         }
-        else
-        {
-            return $this->render('Users/form-login-register-style2.twig', [
-                'registrationForm' => $form->createView(),
-            ]);
+
+        return $this->render('registration/register.html.twig', [
+            'registrationForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/verify/email', name: 'app_verify_email')]
+    public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        // validate email confirmation link, sets User::isVerified=true and persists
+        try {
+            $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
+        } catch (VerifyEmailExceptionInterface $exception) {
+            $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
+
+            return $this->redirectToRoute('app_register');
         }
 
+        // @TODO Change the redirect on success and handle or remove the flash message in your templates
+        $this->addFlash('success', 'Your email address has been verified.');
 
+        return $this->redirectToRoute('app_register');
     }
 }
