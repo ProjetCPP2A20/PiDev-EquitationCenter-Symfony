@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MessDetectorOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCSFixerOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCodeSnifferOptionsConfiguration">
+    <option name="highlightLevel" value="WARNING" />
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/validator" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/web-link" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/security-bundle" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/google-mailer" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/intl" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/http-client" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/http-client-contracts" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/monolog-bridge" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/doctrine-bridge" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/dependency-injection" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/phpunit-bridge" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/redis-messenger" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/mailer" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/security-http" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/debug-bundle" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/twig-bundle" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/web-profiler-bundle" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/doctrine-messenger" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/maker-bundle" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/composer" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/amqp-messenger" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/security-guard" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/browser-kit" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/notifier" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/messenger" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/polyfill-intl-icu" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/serializer" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/twig-bridge" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/asset" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/dotenv" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/expression-language" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/psr/link" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sensio/framework-extra-bundle" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/twig/extra-bundle" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/tecnickcom/tcpdf" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/runtime" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/form" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/monolog-bundle" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/security-core" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/property-access" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/property-info" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/orm" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/password-hasher" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/security-csrf" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/doctrine-bundle" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/stopwatch" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/flex" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/persistence" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/sql-formatter" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/migrations" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/doctrine/doctrine-migrations-bundle" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/framework-bundle" />
+      <path value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/symfony/polyfill-php81" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
+  <component name="PhpStanOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/phpunit.xml.dist" custom_loader_path="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony-Ahmed/vendor/autoload.php" use_configuration_file="true" />
+    </phpunit_settings>
+  </component>
+  <component name="PsalmOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+</project>

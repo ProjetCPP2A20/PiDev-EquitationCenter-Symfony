@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My PDF</title>
+    <img src="{{asset('./contents/img/logo.png')}}" alt="Logo" height="180" />
+    <link href="{{ asset('dist/css/vendors/tippy.css') }}" rel="stylesheet">
+    <link href="{{ asset('/dist/css/app.css') }}" rel="stylesheet"> <!-- END: CSS Assets-->
+
+</head>
+
+<table class="table table-striped" border="1"style="background-color: #97D158; color: #000000;  margin: auto;  width: 80%;"  >
+    <thead class="">
+    <tr class="">
+        <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
+            IDhorse
+        </th>
+        <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
+            NAME
+        </th>
+        <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">
+            DESCRIPTION
+        </th>
+        <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">
+            VISITDATE
+        </th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for med in medicalvisits %}
+        <tr class="intro-x">
+
+            <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                <a class="whitespace-nowrap font-medium" href="">
+                    {{ med.idHorse}}                                </a>
+
+            </td>
+            <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                {{ med.idVet }}
+            </td>
+            <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                {{ med.description }}
+            </td>
+            <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                {{ med.visitDate|date('Y-m-d') }}
+            </td>
+
+        </tr>
+    {% endfor %}
+
+
+
+    <tr>
+            <td colspan="8">no records found</td>
+        </tr>
+    </tbody>
+</table>
+</html>
