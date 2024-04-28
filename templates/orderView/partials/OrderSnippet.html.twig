@@ -1,0 +1,59 @@
+<table id="ordertable" class="w-full text-left -mt-2 border-separate border-spacing-y-[10px]">
+    <thead class="">
+    <tr class="">
+        <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
+            ID_Produit
+        </th>
+        <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
+            Quantité
+        </th>
+        <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">
+            Prix
+        </th>
+        <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">
+            STATUS
+        </th>
+        <th class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">
+            ID_Client
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for productOrder in productOrders %}
+        <tr class="intro-x">
+            <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                <!-- Assuming you don't have product name, replace with product_id -->
+                {{ productOrder.getProductId().getId() }}
+            </td>
+            <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                <!-- Assuming you have a method to get product quantity -->
+                {{ productOrder.getQty() }}
+            </td>
+            <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                <!-- Assuming you have a method to get product price -->
+                {{ productOrder.getPrice() }}
+            </td>
+            <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                <!-- Assuming you have a method to get product status -->
+                {{ productOrder.getStatus() }}
+            </td>
+            <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                <!-- Assuming you have a method to get the id_client -->
+                {{ productOrder.getIdClient().getId() }}
+            </td>
+            <td class="px-5 py-3 border-b dark:border-darkmode-300 box w-56 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 before:absolute before:inset-y-0 before:left-0 before:my-auto before:block before:h-8 before:w-px before:bg-slate-200 before:dark:bg-darkmode-400">
+                <div class="flex items-center justify-center">
+                    <a class="mr-3 flex items-center" href="{{ path('app_EditOrder', {'id': productOrder.id}) }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check-square" class="lucide lucide-check-square stroke-1.5 mr-1 h-4 w-4"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                        Edit
+                    </a>
+                    <a class="flex items-center text-danger delete-button" data-order-id="{{ productOrder.id }}" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trash" class="lucide lucide-trash stroke-1.5 mr-1 h-4 w-4"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+                        Delete
+                    </a>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table
