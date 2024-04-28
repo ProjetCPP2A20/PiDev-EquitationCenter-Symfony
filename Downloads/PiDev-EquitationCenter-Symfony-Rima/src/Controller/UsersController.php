@@ -119,7 +119,7 @@ class UsersController extends AbstractController
   return new Response("success");
 }
   #[Route('/add/users', name: 'app_admin_users')]
-  public function viewUsers(Request $request ,UsersRepository $usersRepository,EntityManagerInterface $entityManager ,): Response
+  public function viewUsers(Request $request ,PaginatorInterface $paginator,UsersRepository $usersRepository,EntityManagerInterface $entityManager ,): Response
   {
 
     $user = new Users();
@@ -208,10 +208,16 @@ class UsersController extends AbstractController
 
     }
     $users = $usersRepository->findAll();
+    $pagination = $paginator->paginate(
+      $users,
+      $request->query->getInt('page', 1),
+      10
+    );
 
     return $this->render('Users/index.html.twig', [
       'controller_name' => 'UsersController',
       'users' => $users,
+      'pagination' => $pagination,
       'form' => $form->createView(),
     ]);
   }
@@ -249,19 +255,28 @@ class UsersController extends AbstractController
   *
   */
   #[Route('/api/users', name: 'api_users')]
-  public function getUsers(Request $request, UsersRepository $usersRepository, EntityManagerInterface $em, ActivityRepository $activityRepository)
+  public function getUsers(Request $request,PaginatorInterface $paginator, UsersRepository $usersRepository, EntityManagerInterface $em, ActivityRepository $activityRepository)
   {
-
+    $page = $request->query->getInt('page', 1);
     $users = $usersRepository->findAll();
-
+    $pagination = $paginator->paginate(
+      $users,
+      $page,
+      10
+    );
     // Use the route
+    $pagination->setUsedRoute('app_admin_users');
 
+    $paginationHtml = $this->renderView('Users/partials/PaginationsSnippet.html.twig', [
+      'pagination' => $pagination
+    ]);
     $htmlContent = $this->renderView('Users/partials/UsersSnippet.html.twig', [
       'users' => $users,
+      'pagination' => $pagination
     ]);
 
 
-    return new JsonResponse(['html' => $htmlContent]);
+    return new JsonResponse(['html' => $htmlContent,'paginationHtml' => $paginationHtml]);
   }
 
 }

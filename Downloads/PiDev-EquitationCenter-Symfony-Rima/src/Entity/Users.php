@@ -26,12 +26,15 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
   #[Assert\NotBlank(message: "email est requis")]
   private string $email;
 
+
   #[ORM\Column(name: "password", type: "string", length: 255, nullable: true, options: ["default" => null])]
   #[Assert\NotBlank (message: "Le mot de passe est requis")]
-  #[Assert\Length(
-    min: 8,
-    minMessage: 'Votre mot de passe doit comporter au moins {{ limit }} caractères',
-  )]
+  #[Assert\PasswordStrength([ 'minScore' => PasswordStrength::STRENGTH_VERY_STRONG])]
+ //#[RollerworksPassword\PasswordStrength(minLength=7, minStrength=3)]
+ // #[Assert\Length(
+   // min: 8,
+  //  minMessage: 'Votre mot de passe doit comporter au moins {{ limit }} caractères',
+  //)]
   private ?string $password = null;
 
   #[ORM\Column(name: "name", type: "string", length: 255, nullable: false)]

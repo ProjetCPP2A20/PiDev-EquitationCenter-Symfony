@@ -13,13 +13,15 @@
   <!-- BEGIN: CSS Assets-->
   <!-- BEGIN: CSS Assets-->
   <script>
-      function loadUsers() {
-      url = '/api/users';
+      function loadUsers(pageNumber) {
+        page = parseInt(document.getElementById('current-page').innerHTML);
+        console.log("page: "+page);
+      url = '/api/users?page='+page;
       fetch(url) // Adjust the URL as necessary
         .then(response => response.json())
         .then(data => {
           document.getElementById('datatableactivities').innerHTML = data.html;
-
+          document.getElementById('paginationContainer').innerHTML = data.paginationHtml;
         })
         .catch(error => console.error('Error loading users:', error));
     }
@@ -1834,7 +1836,7 @@
             </tr>
             </thead>
             <tbody>
-            {% for user in users %}
+            {% for user in pagination %}
               <tr class="intro-x" id="row-id-{{ user.id }}">
 
                 <td class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
@@ -1892,6 +1894,7 @@
         </div>
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->
+        {{ knp_pagination_render(pagination) }}
       </div>
       <!-- END: Pagination -->
     </div>
