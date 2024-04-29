@@ -272,6 +272,44 @@ class VetController extends AbstractController
         ]);
         return $response;
     }
+    #[Route('/tree-by-breed', name: 'tree_by_breed')]
+    public function treeByBreed(HorseRepository $horseRepository): JsonResponse
+    {
+        $horses = $horseRepository->findBy([], ['breed' => 'ASC']);
+        $jsonData = [];
+        foreach ($horses as $horse) {
+            $jsonData[] = [
+                'id' => $horse->getId(),
+                'name' => $horse->getName(),
+                'breed' => $horse->getBreed(),
+                'DatePension' => $horse->getDatePension()->format('Y-m-d'),
+                'isAvailable' => $horse->isIsAvailable(),
+            ];
+        }
+        return new JsonResponse($jsonData);
+    }
+    #[Route('/vet/horse/search', name: 'vet_horse_search', methods: ['POST'])]
+    public function search(Request $request, HorseRepository $horseRepository): JsonResponse
+    {
+        $searchTerm = $request->getContent();
+        $data = json_decode($searchTerm, true);
 
+        $horses = $horseRepository->createQueryBuilder('p')
+            ->where('p.name LIKE :searchTerm')
+            ->setParameter('searchTerm', '%'.$data["search"].'%')
+            ->getQuery()
+            ->getResult();// Implement the search logic in your repository
+        $jsonData = [];
+        foreach ($horses as $horse) {
+            $jsonData[] = [
+                'id' => $horse->getId(),
+                'name' => $horse->getName(),
+                'breed' => $horse->getBreed(),
+                'DatePension' => $horse->getDatePension()->format('Y-m-d'),
+                'isAvailable' => $horse->isIsAvailable(),
+            ];
+        }
+        return new JsonResponse($jsonData);
+    }
 
 }
