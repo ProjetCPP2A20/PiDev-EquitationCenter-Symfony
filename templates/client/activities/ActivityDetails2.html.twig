@@ -42,8 +42,10 @@ include('client/head.html.twig')
                 </div>
             </div>
         </section>
-
+            <div id="error-messages" style="display:none;" class="alert alert-danger">
+            </div>
         <section>
+
             <div class="container">
                 <div class="section-content">
                     <div class="row">
@@ -81,7 +83,7 @@ include('client/head.html.twig')
                                         <div class="cart-form-wrapper mt-30">
                                             <form enctype="multipart/form-data" method="post" class="cart">
                                                 <input type="hidden" value="productID" name="add-to-cart">
-                                                <button class="single_add_to_cart_button btn btn-theme-colored" type="submit">Subscribe to activity</button>
+                                                <button class="single_add_to_cart_button btn btn-theme-colored" type="submit" >Subscribe to activity</button>
                                             </form>
                                         </div>
                                     </div>
@@ -241,8 +243,24 @@ include('client/head.html.twig')
                                                                                     // Select the ol element
                                                                                     console.log(response);
                                                                                 },
-                                                                                error: function() {
-                                                                                    alert("Error sending request");
+                                                                                error: function(jqXHR, textStatus, errorThrown) {
+                                                                                    // Handle the error response
+                                                                                    if (jqXHR.status === 422) {
+                                                                                        // If the server returns a validation error (status code 422)
+                                                                                        // Display the error messages in the form
+
+                                                                                        // Assuming the server response is in JSON format
+                                                                                    //    var errors = jqXHR.responseJSON.errors;
+                                                                                        console.log(jqXHR.responseJSON);
+                                                                                     //   var errorMessages = Object.values(errors).join("<br>");
+                                                                                            var errorMessages = jqXHR.responseJSON.message;
+                                                                                        // Display the error messages in a suitable element on your form
+                                                                                        $("#error-messages").html(errorMessages);
+                                                                                        document.getElementById("error-messages").style="";
+                                                                                    } else {
+                                                                                        // For other types of errors
+                                                                                        alert("Error sending request: " + textStatus);
+                                                                                    }
                                                                                 },
                                                                                 complete: function() {
                                                                                     // Hide loading indicator or enable the submit button

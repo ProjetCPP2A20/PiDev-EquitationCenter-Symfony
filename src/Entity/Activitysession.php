@@ -86,4 +86,16 @@ class Activitysession
             'activityid' => $this->getActivityid() ? $this->getActivityid()->getId() : null,
         ];
     }
+    public function getDurationInHours(): ?float
+    {
+        if ($this->starttime && $this->endtime) {
+            $start = $this->starttime->getTimestamp();
+            $end = $this->endtime->getTimestamp();
+            $durationInSeconds = $end - $start;
+            $durationInHours = $durationInSeconds / 3600; // 3600 seconds in an hour
+            return $durationInHours;
+        }
+
+        return null;
+    }
 }

@@ -35,10 +35,41 @@
         </section>
 
         <section>
+            <div class="col-md-12" style="align-items: center;text-align: center;align-content: center">
+                <nav>
+                    <ul class="pagination theme-colored mt-0">
+                        <li><a href="#" data-filter="all">Tous</a> </li>
+                        <li><a href="#" data-filter="Randonnées">Randonnées</a></li>
+                        <li><a href="#" data-filter="Ateliers de soins aux chevaux">Ateliers de soins aux chevaux</a></li>
+                        <li><a href="#" data-filter="Thérapie assistée par les chevaux">Thérapie assistée par les chevaux</a></li>
+                        <li><a href="#" data-filter="Promenade en poney">Promenades en poney</a></li>
+                        <li><a href="#" data-filter="Leçons d'équitation">Leçons d'équitation</a></li>
+                                           </ul>
+                </nav>
+            </div>
+            <script>
+                $(document).ready(function() {
+                    $(".pagination a").click(function(e) {
+                        e.preventDefault();
+
+                        // Get the selected filter category
+                        var filterCategory = $(this).data("filter");
+                        console.log(filterCategory);
+                        // Show/hide activity items based on the selected filter
+                        if (filterCategory === "all") {
+                            $(".activity-item").show();
+                        } else {
+                            $(".activity-item").hide();
+                            $(".activity-item[data-category='" + filterCategory + "']").show();
+                        }
+                    });
+                });
+            </script>
             <div class="container">
+
                 <div class="row multi-row-clearfix">
                     {% for activity in activities %}
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 activity-item" data-category="{{ activity.typeactivity }}">
                         <div class="courses maxwidth500 mb-30">
                             <div class="courses-thumb">
                                 <img class="img-fullwidth" src="data:image/png;base64,{{ activity.getImagedata }}" alt="">
@@ -52,6 +83,7 @@
                      {% endfor %}
 
                 </div>
+
             </div>
         </section>
         <!-- end main-content -->
@@ -128,6 +160,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
         <section>

@@ -45,4 +45,18 @@ class ActivityRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    /**
+     * Search activities by activity name.
+     *
+     * @param string $activityName
+     * @return Activity[] Returns an array of Activity objects
+     */
+    public function searchByActivityName(string $activityName): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.title LIKE :activityName')
+            ->setParameter('activityName', '%'.$activityName.'%')
+            ->getQuery()
+            ->getResult();
+    }
 }

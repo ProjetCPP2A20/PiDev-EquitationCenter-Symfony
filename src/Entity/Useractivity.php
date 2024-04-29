@@ -17,10 +17,10 @@ class Useractivity
     #[ORM\GeneratedValue(strategy: "IDENTITY")]
     private ?int $id = null;
 
-    #[ORM\Column(name: "Feedback", type: "string", length: 255, nullable: false)]
-    private string $feedback;
+    #[ORM\Column(name: "Feedback", type: "string", length: 255, nullable: true)]
+    private ?string $feedback = null;
 
-    #[ORM\Column(name: "Stars", type: "integer", nullable: false)]
+    #[ORM\Column(name: "Stars", type: "integer", nullable: true)]
     private int $stars;
 
     #[ORM\ManyToOne(targetEntity: Users::class)]

@@ -8,10 +8,12 @@ use App\Repository\ActivitysessionRepository;
 use App\Repository\UseractivityRepository;
 use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Illuminate\Support\Facades\Redirect;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ClientController extends AbstractController
@@ -33,8 +35,20 @@ class ClientController extends AbstractController
         ]);
     }
     #[Route('/client/activities/details', name: 'app_activity_view')]
-    public function viewActivityDetails(UsersRepository $usersRepository,UseractivityRepository $useractivityRepository,Request $request,ActivitysessionRepository $activitysessionRepository,ActivityRepository $activityRepository): Response
+    public function viewActivityDetails(EntityManagerInterface $entityManager,UsersRepository $usersRepository,UseractivityRepository $useractivityRepository,Request $request,ActivitysessionRepository $activitysessionRepository,ActivityRepository $activityRepository): Response
     {
+        $activity = $activityRepository->find($request->query->get('id'));
+        if($request->getMethod()=="POST")
+        {
+            $useractivity = new Useractivity();
+            $useractivity->setStars(0);
+            $useractivity->setActivityid($activity);
+            $user = $usersRepository->findOneBy(['id' => 2]);
+            $useractivity->setUserid($user);
+            $entityManager->persist($useractivity);
+            $entityManager->flush();
+        }
+
         $activity = $activityRepository->find($request->query->get('id'));
         $activitySessions = $activitysessionRepository->findBy(['activityid' => $activity]);
         $dayNames = [
@@ -78,19 +92,21 @@ class ClientController extends AbstractController
     }
 
     #[Route('/client/activities/submitReview', name: 'app_activity_review_submit')]
-    public function submitReview(EntityManagerInterface $entityManager,UsersRepository $userRepository,Request $request,ActivityRepository $activityRepository): JsonResponse
+    public function submitReview(FlashBagInterface $flashBag,UseractivityRepository $useractivityRepository,EntityManagerInterface $entityManager,UsersRepository $userRepository,Request $request,ActivityRepository $activityRepository): JsonResponse
     {
         $activity = $activityRepository->find($request->request->get('activityId'));
 
         $rating = $request->request->get('stars');
         $description = $request->request->get('contact_message2');
+        $clean_words = \ConsoleTVs\Profanity\Builder::blocker($description)->filter();
 
         $userid=2;
-        $userActivity = new Useractivity();
-        $userActivity->setActivityid($activity);
-        $user= $userRepository->find($userid);
-        $userActivity->setUserid($user);
-        $userActivity->setFeedback($description);
+        $userActivity = $useractivityRepository->findOneBy(['activityid' => $activity->getId(),'userid' => $userid]);
+        if ($userActivity === null)
+        {
+            return new JsonResponse(['error' => true, 'message' => "You're cannot review this activity without a valid subscription"], 422);
+        }
+        $userActivity->setFeedback($clean_words);
         $userActivity->setStars($rating);
         $userActivity->setFeedbackDate(new \DateTime());
         $entityManager->persist($userActivity);

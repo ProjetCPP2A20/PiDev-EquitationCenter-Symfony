@@ -3326,7 +3326,6 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="{{ asset('dist/js/components/base/tippy.js') }}"></script></script>
     <script src="{{ asset('dist/js/components/base/litepicker.js') }}"></script></script>
     <script src="{{ asset('dist/js/components/report-line-chart.js') }}"></script></script>
-    <script src="{{ asset('dist/js/components/report-pie-chart.js') }}"></script></script>
     <script src="{{ asset('dist/js/components/report-donut-chart.js') }}"></script></script>
     <script src="{{ asset('dist/js/components/report-donut-chart-1.js') }}"></script></script>
     <script src="{{ asset('dist/js/components/simple-line-chart-1.js') }}"></script></script>
@@ -3336,5 +3335,52 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="{{ asset('dist/js/components/themes/enigma/top-bar.js') }}"></script></script> <!-- END: Vendor JS Assets-->
     <!-- BEGIN: Pages, layouts, components JS Assets-->
     <!-- END: Pages, layouts, components JS Assets-->
+<script>
+    (() => {
+        // src/js/components/report-pie-chart.js
+        (function() {
+            "use strict";
+            if ($("#report-pie-chart").length) {
+                const chartColors = () => [
+                    getColor("pending", 0.9),
+                    getColor("warning", 0.9),
+                    getColor("primary", 0.9)
+                ];
+                const ctx = $("#report-pie-chart")[0].getContext("2d");
+                const reportPieChart = new Chart(ctx, {
+                    type: "pie",
+                    data: {
+                        labels: [
+                            "31 - 50 Years old",
+                            ">= 50 Years old",
+                            "17 - 30 Years old"
+                        ],
+                        datasets: [
+                            {
+                                data: [15, 10, 65],
+                                backgroundColor: chartColors,
+                                hoverBackgroundColor: chartColors,
+                                borderWidth: 5,
+                                borderColor: () => $("html").hasClass("dark") ? getColor("darkmode.700") : getColor("white")
+                            }
+                        ]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+                helper.watchClassNameChanges($("html")[0], (currentClassName) => {
+                    reportPieChart.update();
+                });
+            }
+        })();
+    })();
+
+</script>
 </body>
 </html>

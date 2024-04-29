@@ -8,7 +8,9 @@ use App\Form\ActivitySessionType;
 use App\Form\ActivityType;
 use App\Repository\ActivityRepository;
 use App\Repository\ActivitysessionRepository;
+use App\Repository\UseractivityRepository;
 use App\Repository\UsersRepository;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -17,11 +19,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use App\Entity\Useractivity;
 class AdminController extends AbstractController
 {
     #[Route('/admin', name: 'app_admin')]
-    public function index(ActivitysessionRepository $activitysessionRepository,ActivityRepository $activityRepository,UsersRepository $usersRepository,EntityManagerInterface $entityManager): Response
+    public function index(PaginatorInterface $paginator,UseractivityRepository $useractivityRepository,ActivitysessionRepository $activitysessionRepository,ActivityRepository $activityRepository,UsersRepository $usersRepository,EntityManagerInterface $entityManager): Response
     {
         $sessions = $activitysessionRepository->findAll();
         $users = $usersRepository->findAll();
@@ -33,17 +35,109 @@ class AdminController extends AbstractController
     ORDER BY linkCount DESC
 ');*/
 
+        // Fetch all activities
+        $activities = $activityRepository->findAll();
 
+// Fetch and store user activity counts for each activity
+        $userActivityCounts = [];
+        foreach ($activities as $activity) {
+            $userActivityCount = $useractivityRepository->createQueryBuilder('ua')
+                ->select('COUNT(ua)')
+                ->where('ua.activityid = :activityId')
+                ->setParameter('activityId', $activity->getId())
+                ->getQuery()
+                ->getSingleScalarResult();
+
+            $userActivityCounts[$activity->getId()] = $userActivityCount;
+        }
+
+        // Sort activities based on user activity count
+        uasort($activities, function ($a, $b) use ($userActivityCounts) {
+            $countA = $userActivityCounts[$a->getId()];
+            $countB = $userActivityCounts[$b->getId()];
+            return $countB - $countA; // Sort in descending order of counts
+        });
+        $pagination = $paginator->paginate(
+            $activities,
+            1,
+            3
+        );
 
        // $query->setMaxResults(3);
 
      //   $topActivities = $query->getResult();
+        $pieChart = new PieChart();
+        $data = [];
+        foreach ($sessions as $session) {
+            $activity = $session->getActivityid();
+            if (!isset($data[$activity->getTitle()])) {
+                $data[$activity->getTitle()] = [
+                    'Task' => $activity->getTitle(),
+                    'Hours per Day' => strval($session->getDurationInHours()),
+                ];
+            }else
+            {
+                $data[$activity->getTitle()] = [
+                    'Task' => $activity->getTitle(),
+                    'Hours per Day' => strval(floatval($data[$activity->getTitle()]['Hours per Day'])+floatval($session->getDurationInHours()))
+                ];
+               // dd($data[$activity->getTitle()]['Hours per Day'],$session->getDurationInHours(),strval(intval($session->getDurationInHours()) + intval($data[$activity->getTitle()]['Hours per Day'])));
+            }
+        }
+        $pieChart->getData()->setArrayToDataTable($data);
+        $pieChart->getOptions()->setHeight(266);
+        $pieChart->getOptions()->setWidth(266);
+        $pieChart->getOptions()->setIs3D(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+        $pieChart->getOptions()->setPieHole(0.4);
+        $useractivities=$useractivityRepository->findAll();
+// Assuming you have the $useractivityRepository instance available
+        $useractivityRepository = $entityManager->getRepository(Useractivity::class);
+
+// Retrieve all useractivities
+        $useractivities = $useractivityRepository->findAll();
+
+// Group useractivities by activityid
+        $donutChart = new PieChart();
+        $groupedUseractivities = [];
+        foreach ($useractivities as $useractivity) {
+            $activityName = $useractivity->getActivityid()->getTitle();
+
+            if (!isset($groupedUseractivities[$activityName])) {
+                $groupedUseractivities[$activityName] = [];
+            }
+
+            $groupedUseractivities[$activityName][] = $useractivity;
+        }
+
+        $data = [];
+        foreach ($groupedUseractivities as $activityName => $useractivities) {
+            $data[] = [
+                'Task' => $activityName,
+                'Hours per Day' => strval(count($useractivities)),
+            ];
+        }
+        $donutChart->getData()->setArrayToDataTable($data);
+        $donutChart->getOptions()->setHeight(266);
+        $donutChart->getOptions()->setWidth(266);
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
             'sessions' => $sessions,
             'activities' => $activities,
             'users' => $users,
+            array('piechart' => $pieChart),
+            'piechart' => $pieChart,
    //         'topactivities' => $topActivities
+            'useractivities' => $useractivityRepository->findAll(),
+            'donutchart' => $donutChart,
+            array('donutchart' => $donutChart),
+            'activities' => $activities,
+            'pagination' => $pagination
+
         ]);
     }
 
@@ -261,8 +355,6 @@ class AdminController extends AbstractController
         $activities = $activityRepository->findAll();
         $activitysessions = $activitysessionRepository->findAll();
 
-        // Prepare data for JSON response
-        // Prepare data for JSON response
         $data = [
             'activities' => array_map(function($activity) { return $activity->jsonSerialize(); }, $activities),
             'activitysessions' => array_map(function($session) { return $session->jsonSerialize(); }, $activitysessions),
@@ -344,4 +436,32 @@ class AdminController extends AbstractController
 
         return $this->json(['message' => 'Session edited successfully'], 200);
     }
+    /**
+     * @Route("/api/activities/search", name="search_activities", methods={"POST"})
+     */
+    public function searchActivities(PaginatorInterface $paginator,Request $request,ActivityRepository $activityRepository): JsonResponse
+    {
+        // Get the search value from the request
+        $requestData = json_decode($request->getContent(), true);
+        $searchValue = $requestData['searchValue'] ?? '';
+        $activities = $activityRepository->searchByActivityName($searchValue);
+
+        // Perform your search logic here
+        // For demonstration, let's just return the search value
+        $pagination = $paginator->paginate(
+            $activities,
+            1,
+            10
+        );
+        $pagination->setUsedRoute('app_admin_activites');
+        $paginationHtml = $this->renderView('admin/activities/partials/PaginationsSnippet.html.twig', [
+            'pagination' => $pagination
+        ]);
+        $htmlContent = $this->renderView('admin/activities/partials/ActivitiesSnippet.html.twig', [
+            'activities' => $activities,
+            'pagination' => $pagination
+        ]);
+        return new JsonResponse(['html' => $htmlContent, 'paginationHtml' => $paginationHtml]);
+    }
+
 }
