@@ -42,6 +42,13 @@ class StripeController extends AbstractController
         $productOrderRepository->sms();
         // Métier quantité
         $product = $productRepository->findBy(['id' => $productOrder->getProductId()], null, 1)[0];
+        if ($product->getStockqty() -  $productOrder->getQty()<0) {
+            $this->addFlash('error', 'Quantité insuffisante');
+            return $this->render('client/Products/ProductsList.html.twig', [
+                'controller_name' => 'ClientHomepageController',
+                'products' => $productRepository->findAll(),
+            ]);
+        }
         $product->setStockqty($product->getStockqty() - $productOrder->getQty());
         $entityManager->persist($product);
         $productOrder->setStatus("Paid");
