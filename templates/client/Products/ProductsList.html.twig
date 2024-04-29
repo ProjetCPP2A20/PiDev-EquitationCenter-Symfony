@@ -66,6 +66,7 @@
 
     <!-- Header -->
     <header id="header" class="header">
+
         <div class="header-top bg-theme-colored sm-text-center p-0">
             <div class="container">
                 <div class="row">
@@ -691,7 +692,11 @@
             </div>
         </div>
     </header>
-
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <!-- Start main-content -->
     <div class="main-content">
 

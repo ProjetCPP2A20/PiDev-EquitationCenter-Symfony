@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Charge;
 use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,23 +29,29 @@ class StripeController extends AbstractController
     }
 
     #[Route('/stripe/create-charge', name: 'app_stripe_charge', methods: ['POST'])]
-    public function createCharge(ProductOrderRepository $productOrderRepository,Request $request, ManagerRegistry $doct): Response
+    public function createCharge(EntityManagerInterface $entityManager,ProductRepository $productRepository,ProductOrderRepository $productOrderRepository,Request $request, ManagerRegistry $doct): Response
     {
         Stripe::setApiKey($_ENV["STRIPE_SECRET"]);
-        Charge::create ([
+        Charge::create([
             "amount" => 10 * 100,
             "currency" => "usd",
             "source" => $request->request->get('stripeToken'),
             "description" => "Binaryboxtuts Payment Test",
         ]);
-        $productOrder = $productOrderRepository->findBy(['idClient' => 1])[0];
+        $productOrder = $products = array_reverse($productOrderRepository->findBy(['idClient' => 1]))[0];
         $productOrderRepository->sms();
+        // Métier quantité
+        $product = $productRepository->findBy(['id' => $productOrder->getProductId()], null, 1)[0];
+        $product->setStockqty($product->getStockqty() - $productOrder->getQty());
+        $entityManager->persist($product);
         $productOrder->setStatus("Paid");
         $em = $doct->getManager();
         $em->flush();
-
-        return $this->redirectToRoute('app_client_products', [], Response::HTTP_SEE_OTHER);
+        $this->addFlash('success', 'votre paiement a été effectué avec succès');
+        return $this->render('client/Products/ProductsList.html.twig', [
+            'controller_name' => 'ClientHomepageController',
+            'products' => $productRepository->findAll(),
+        ]);
     }
-
 
 }

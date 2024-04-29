@@ -9,11 +9,11 @@ use App\Form\ProductType;
 use App\Repository\ProductOrderRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Env\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class DashboardadminController extends AbstractController
 {
@@ -235,5 +235,45 @@ class DashboardadminController extends AbstractController
         return $this->redirectToRoute('view');
     }
 
+    #[Route('/tree-by-name', name: 'tree_by_name')]
+    public function treeByName(ProductRepository $productRepository): JsonResponse
+    {
+        $products = $productRepository->findBy([], ['name' => 'ASC']);
+        $jsonData = [];
+        foreach ($products as $product) {
+            $jsonData[] = [
+                'id' => $product->getId(),
+                'name' => $product->getName(),
+                'BlobImage' => $product->getBlobImage(),
+                'stockqty' => $product->getStockqty(),
+                'price' => $product->getPrice(),
+                'Description' => $product->getDescription(),
+            ];
+        }
+        return new JsonResponse($jsonData);
+    }
+    #[Route('/search', name: 'search', methods: ['POST'])]
+    public function search(Request $request, ProductRepository $productRepository): JsonResponse
+    {
+        $searchTerm = $request->getContent();
+        $data = json_decode($searchTerm, true);
 
+        $products = $productRepository->createQueryBuilder('p')
+        ->where('p.name LIKE :searchTerm')
+        ->setParameter('searchTerm', '%'.$data["search"].'%')
+        ->getQuery()
+        ->getResult();// Implement the search logic in your repository
+        $jsonData = [];
+        foreach ($products as $product) {
+            $jsonData[] = [
+                'id' => $product->getId(),
+                'name' => $product->getName(),
+                'BlobImage' => $product->getBlobImage(),
+                'stockqty' => $product->getStockqty(),
+                'price' => $product->getPrice(),
+                'Description' => $product->getDescription(),
+            ];
+        }
+        return new JsonResponse($jsonData);
+    }
 }
