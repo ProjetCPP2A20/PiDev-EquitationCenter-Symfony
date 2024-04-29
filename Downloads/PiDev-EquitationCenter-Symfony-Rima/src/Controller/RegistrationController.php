@@ -32,39 +32,36 @@ class RegistrationController extends AbstractController
       $form = $this->createForm(RegistrationFormType::class, $user);
       $form->handleRequest($request);
 
-      if ($form->isSubmitted() && $form->isValid()) {
+      if ($form->isSubmitted()){
+
         // encode the plain password
-        $user->setPassword(
-          $userPasswordHasher->hashPassword(
-            $user,
-            $form->get('password')->getData()
-          )
-        );
-        if ($form->isSubmitted()) {
+      $user->setPassword($userPasswordHasher->hashPassword($user, $form->get('plainPassword')->getData())); //
 
-          $uploadedFile = $request->files->get('user')['imagedata']->getPathname();
-          if ($uploadedFile)
-            // Read the binary data from the uploaded file
-            $binaryData = file_get_contents($uploadedFile);
+      // $uploadedFile = $request->files->get('user_imageData')[0]->getPathname();
+      //  if ($uploadedFile) {
 
+      // Read the binary data from the uploaded file
+      // $binaryData = file_get_contents($uploadedFile);
 
-          $user->setImagedata($binaryData);
-          $user->setRoles(['ROLE_CLIENT']);
-          $entityManager->persist($user);
-          $entityManager->flush();
+      // Set the binary data on your entity
+      // $user->setImagedata($binaryData);
 
-          // generate a signed url and email it to the user
-          $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-            (new TemplatedEmail())
-              ->from(new Address('rima.benabdallah@fsb.ucar.tn', 'PEGASE'))
-              ->to($user->getEmail())
-              ->subject('Please Confirm your Email')
-              ->htmlTemplate('registration/confirmation_email.html.twig')
-          );
-          // do anything else you need here, like send an email
-}
-          return $this->redirectToRoute('Users/index-dark-mp-layout1');
-        }
+      $user->setRoles(['ROLE_CLIENT']);
+      $entityManager->persist($user);
+      $entityManager->flush();
+
+      // generate a signed url and email it to the user
+      $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+        (new TemplatedEmail())
+          ->from(new Address('rima.benabdallah@fsb.ucar.tn', 'PEGASE'))
+          ->to($user->getEmail())
+          ->subject('Please Confirm your Email')
+          ->htmlTemplate('registration/confirmation_email.html.twig')
+      );
+      // do anything else you need here, like send an email
+
+      return $this->redirectToRoute('app_login');
+    }
 
         return $this->render('registration/register.html.twig', [
           'registrationForm' => $form->createView(),

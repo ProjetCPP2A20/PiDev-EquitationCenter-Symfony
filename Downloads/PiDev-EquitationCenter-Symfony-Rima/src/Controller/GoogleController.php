@@ -37,7 +37,7 @@ class GoogleController extends AbstractController
         $user = $doct->getRepository(Users::class)->findOneBy(['email' => $client->fetchUser()->getEmail()]);
 
         if (!$user) {
-            $this->addFlash('warning', 'email not associated with Pégase account');
+            $this->addFlash('warning', 'Adresse email n"est pas associée à un compte');
             return $this->redirectToRoute("app_login");
         } else {
             $customAuthenticator = new AppCustomAuthenticator();

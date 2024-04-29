@@ -7,6 +7,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\PasswordStrength;
 
 
 #[ORM\Table(name: "users")]
@@ -29,8 +30,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
   #[ORM\Column(name: "password", type: "string", length: 255, nullable: true, options: ["default" => null])]
   #[Assert\NotBlank (message: "Le mot de passe est requis")]
-  #[Assert\PasswordStrength([ 'minScore' => PasswordStrength::STRENGTH_VERY_STRONG])]
- //#[RollerworksPassword\PasswordStrength(minLength=7, minStrength=3)]
+  #[Assert\PasswordStrength([ 'minScore' => PasswordStrength::STRENGTH_VERY_STRONG, 'message' => 'Votre mot de passe doit comporter au moins 8 caractères, 1 chiffre, 1 lettre majuscule, 1 lettre minuscule et 1 caractère spécial'
+  ])]
+// #[RollerworksPassword\PasswordStrength(minLength=7, minStrength=3)]
  // #[Assert\Length(
    // min: 8,
   //  minMessage: 'Votre mot de passe doit comporter au moins {{ limit }} caractères',

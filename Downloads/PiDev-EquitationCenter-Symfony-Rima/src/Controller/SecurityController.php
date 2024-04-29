@@ -8,7 +8,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
+{    #[Route('/home', name: 'app_home')]
+public function index(): Response
 {
+  return $this->render('Users/index-dark-mp-layout1.twig', [
+    'controller_name' => 'SecurityController',
+  ]);
+}
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {

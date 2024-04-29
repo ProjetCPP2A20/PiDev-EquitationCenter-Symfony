@@ -3,6 +3,7 @@
 namespace App\Controller;
 use App\Entity\Users;
 use App\Form\LoginType;
+use App\Form\UsersFilterType;
 use App\Repository\ActivityRepository;
 use App\Repository\UsersRepository;
 use App\Form\UserType;
@@ -14,18 +15,48 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Knp\Component\Pager\PaginatorInterface;
-
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 class UsersController extends AbstractController
 {
-  #[Route('/users', name: 'app_users')]
-  public function index(): Response
+ // #[Route('/users', name: 'app_users')]
+  //public function index(): Response
+  //{
+  //  return $this->render('users/index.html.twig', [
+  //    'controller_name' => 'UsersController',
+  //  ]);
+ // }
+  #[Route('users', name: 'app_users')]
+  public function index(Request $request, ManagerRegistry $doc, UsersRepository $userRepo): Response
   {
+    $user = $doc->getRepository(Users::class)->findOneBy(['email' => $this->getUser()->getUserIdentifier()]);
+    $users = $doc->getRepository(Users::class)->findAll();
+
+
+    $filterForm = $this->createForm(UsersFilterType::class);
+    $filterForm->handleRequest($request);
+
+    if ($filterForm->isSubmitted() && $filterForm->isValid()) {
+      $type = $filterForm->get('role')->getData();
+      if ($type == '["ROLE_ADMIN"]') {
+        $users = $userRepo->findByRole('["ROLE_ADMIN"]');
+      } elseif ($type == '["ROLE_USER"]') {
+        $users = $userRepo->findByRole('["ROLE_CLIENT"]');
+      } elseif ($type == '["ROLE_VET"]') {
+        $users = $userRepo->findByRole('["ROLE_VET"]');
+      } else {
+        $users = $userRepo->findByRole('["ROLE_INSTRUCTOR"]');
+      }
+    }
+
     return $this->render('users/index.html.twig', [
       'controller_name' => 'UsersController',
+      'user' => $users,
+      'usersList' => $users,
+      'filterForm' => $filterForm->createView(),
     ]);
   }
-
 
 
    /*#[Route('/register', name:'app_register')]
@@ -119,7 +150,7 @@ class UsersController extends AbstractController
   return new Response("success");
 }
   #[Route('/add/users', name: 'app_admin_users')]
-  public function viewUsers(Request $request ,PaginatorInterface $paginator,UsersRepository $usersRepository,EntityManagerInterface $entityManager ,): Response
+  public function viewUsers(Request $request ,PaginatorInterface $paginator,UsersRepository $usersRepository,EntityManagerInterface $entityManager ,UserPasswordHasherInterface $passwordHasher): Response
   {
 
     $user = new Users();
@@ -148,7 +179,8 @@ class UsersController extends AbstractController
       $date = new \DateTime();
       $user->setDatejoined($date);
         $rolesField = $form->get('roles');
-
+      $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
+      $user->setPassword($hashedPassword);
         // $uploadedFile = $request->files->get('activity')['imageData']->getData();
       // $uploadedFile = $request->files->get('activity')['imageData']->getData();
 
@@ -193,7 +225,9 @@ class UsersController extends AbstractController
       $updatedUser->setName($user->getName());
       $updatedUser->setNumTel($user->getNumTel());
       $updatedUser->setEmail($user->getEmail());
-      $updatedUser->setPassword($user->getPassword());
+      $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
+      $updatedUser->setPassword($hashedPassword);
+     // $updatedUser->setPassword($user->getPassword());
       $updatedUser->setDatejoined($user->getDatejoined());
       $updatedUser->setAddress($user->getAddress());
 

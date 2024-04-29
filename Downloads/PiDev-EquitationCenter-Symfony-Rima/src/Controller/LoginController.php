@@ -16,13 +16,13 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class LoginController extends AbstractController
 {
 
-  #[Route('/home', name: 'app_home')]
-  public function index(): Response
-  {
-    return $this->render('Users/index-dark-mp-layout1.twig', [
-      'controller_name' => 'LoginController',
-    ]);
-  }
+ // #[Route('/home', name: 'app_home')]
+ // public function index(): Response
+//  {
+ //   return $this->render('Users/index-dark-mp-layout1.twig', [
+   //   'controller_name' => 'LoginController',
+  //  ]);
+ // }
   #[Route('/loginn', name: 'app_loginn')]
   public function login(Request $request,UsersRepository $usersRepository): Response
   {

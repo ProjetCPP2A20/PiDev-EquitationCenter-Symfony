@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -23,21 +24,11 @@ class ChangePasswordFormType extends AbstractType
                     ],
                 ],
                 'first_options' => [
-                    'constraints' => [
-                        new NotBlank([
-                            'message' => 'Please enter a password',
-                        ]),
-                        new Length([
-                            'min' => 6,
-                            'minMessage' => 'Your password should be at least {{ limit }} characters',
-                            // max length allowed by Symfony for security reasons
-                            'max' => 4096,
-                        ]),
-                    ],
-                    'label' => 'New password',
+
+                    'label' => 'Nouveau mot de passe'
                 ],
                 'second_options' => [
-                    'label' => 'Repeat Password',
+                    'label' => 'Confirmer le mot de passe'
                 ],
                 'invalid_message' => 'The password fields must match.',
                 // Instead of being set onto the object directly,
@@ -49,6 +40,8 @@ class ChangePasswordFormType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([]);
+        $resolver->setDefaults([
+          'data_class' => Users::class,
+        ]);
     }
 }
