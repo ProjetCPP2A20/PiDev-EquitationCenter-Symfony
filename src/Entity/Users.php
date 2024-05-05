@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Table(name: "users")]
 #[ORM\Entity]
@@ -46,8 +48,10 @@ class Users
     #[ORM\Column(name: "dateJoined", type: "date", nullable: false)]
     private \DateTimeInterface $datejoined;
 
-    // Getters and setters...
-
+#[ORM\OneToMany(targetEntity:Commentaire::class,mappedBy:"user")]
+private Collection $commentaire;
+#[ORM\OneToMany(targetEntity:Users::class,mappedBy:"user")]
+private Collection $post;
     public function getId(): ?int
     {
         return $this->id;
@@ -173,4 +177,67 @@ class Users
         $this->datejoined = $datejoined;
         return $this;
     }
+    public function __construct()
+    {
+        $this->commentaire =new ArrayCollection();
+        $this->post =new ArrayCollection();
+
+    }
+    public function getCommentaire(): Collection
+    {
+        return $this->commentaire;
+    }
+
+    public function addCommentaire(Commentaire $comm):self
+    {
+        if (!$this->commentaire->contains($comm)){
+
+            $this->commentaire[] = $comm;
+
+            $comm->setUser($this);
+
+        }
+        return $this;
+    }
+
+    
+
+    public function removeCommentaire(Commentaire $comm):self
+    {
+        if ($this->commentaire->removeElement($comm))
+        {
+            $comm->setUser(null);
+        }
+        return $this;
+
+    }
+    public function getPost(): Collection
+    {
+        return $this->post;
+    }
+
+    public function addPost(Post $p):self
+    {
+        if (!$this->post->contains($p)){
+
+            $this->post[] = $p;
+
+            $p->setUser($this);
+
+        }
+        return $this;
+    }
+
+    
+
+    public function removePost(Post $p):self
+    {
+        if ($this->post->removeElement($p))
+        {
+            $p->setUser(null);
+        }
+        return $this;
+
+    }
+
 }

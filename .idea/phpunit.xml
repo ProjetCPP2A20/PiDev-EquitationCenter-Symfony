@@ -3,9 +3,9 @@
   <component name="PHPUnit">
     <option name="directories">
       <list>
+        <option value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony/tests" />
         <option value="$PROJECT_DIR$/tests" />
         <option value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony/Desktop/PiDev-EquitationCenter-Symfony-Rima/tests" />
-        <option value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony/tests" />
       </list>
     </option>
   </component>

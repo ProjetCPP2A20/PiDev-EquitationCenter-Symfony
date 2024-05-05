@@ -35,7 +35,9 @@ class Post
 
     #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'post')]
     private Collection $commentaires;
-
+    #[ORM\ManyToOne(targetEntity: Users::class,inversedBy:"post")]
+    #[ORM\JoinColumn(name: 'userid', referencedColumnName: 'id')]
+    private ?Users $user = null;
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
@@ -122,6 +124,17 @@ class Post
                 $commentaire->setPost(null);
             }
         }
+
+        return $this;
+    }
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

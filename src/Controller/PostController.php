@@ -6,22 +6,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
-
 use App\Repository\PostRepository;
 use App\Repository\CommetaireRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Post;
+use App\Entity\Users;
+
 use App\Entity\Commentaire;
 use Symfony\Component\HttpFoundation\Request;
-
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\File\File;
 use App\Form\PostType;
 use App\Form\CommentaireType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use Knp\Snappy\Pdf;
 
@@ -83,6 +79,9 @@ class PostController extends AbstractController
     public function addPost(Request $request, ManagerRegistry $doctrine,  SluggerInterface $slugger): Response
     {
         $post = new Post();
+        $userid=1;
+        $user=$doctrine->getRepository(Users::class)->find($userid);
+        $post->setUser($user);
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
         // dump($request->request->all()); // Affiche les données soumises dans le formulaire
@@ -262,7 +261,10 @@ class PostController extends AbstractController
 
         $post = $doctrine->getRepository(Post::class)->find($id);
 
-        $cmt = new Commentaire();
+        $cmt= new Commentaire();
+        $userid=1;
+        $user=$doctrine->getRepository(Users::class)->find($userid);
+        $cmt->setUser($user);
         $form = $this->createForm(CommentaireType::class, $cmt);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid() ) {
@@ -309,7 +311,7 @@ class PostController extends AbstractController
         $cmt = $doctrine->getRepository(Commentaire::class)->find($idCmt);
 
         $post = $doctrine->getRepository(Post::class)->find($id);
-
+       
 
         $form = $this->createForm(CommentaireType::class, $cmt);
         $form->handleRequest($request);

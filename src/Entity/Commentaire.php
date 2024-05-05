@@ -6,6 +6,7 @@ use App\Repository\CommentaireRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Post;
+use App\Entity\Users;
 
 #[ORM\Entity(repositoryClass: CommentaireRepository::class)]
 class Commentaire
@@ -22,9 +23,12 @@ class Commentaire
     #[ORM\Column]
     private ?string $date = null;
 
-    #[ORM\ManyToOne(targetEntity: Post::class)]
+    #[ORM\ManyToOne(targetEntity: Post::class,inversedBy:"commentaires")]
     #[ORM\JoinColumn(name: 'post_id', referencedColumnName: 'id')]
     private ?Post $post = null;
+    #[ORM\ManyToOne(targetEntity: Users::class,inversedBy:"commentaire")]
+    #[ORM\JoinColumn(name: 'userid', referencedColumnName: 'id')]
+    private ?Users $user = null;
 
     public function getId(): ?int
     {
@@ -63,6 +67,17 @@ class Commentaire
     public function setPost(?Post $post): self
     {
         $this->post = $post;
+
+        return $this;
+    }
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
