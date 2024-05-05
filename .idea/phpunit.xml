@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PHPUnit">
+    <option name="directories">
+      <list>
+        <option value="$PROJECT_DIR$/tests" />
+        <option value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony/Desktop/PiDev-EquitationCenter-Symfony-Rima/tests" />
+        <option value="$PROJECT_DIR$/PiDev-EquitationCenter-Symfony/tests" />
+      </list>
+    </option>
+  </component>
+</project>
