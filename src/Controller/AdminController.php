@@ -437,6 +437,7 @@ class AdminController extends AbstractController
     public function editSession(ActivityRepository $activityRepository, Request $request, EntityManagerInterface $entityManager, ActivitysessionRepository $activitysessionRepository): Response
     {
         $data = json_decode($request->getContent(), true);
+
         $sessionId = $data['id'];
         $session = $activitysessionRepository->find($sessionId);
         $session->setWeekday($data['weekday']);
