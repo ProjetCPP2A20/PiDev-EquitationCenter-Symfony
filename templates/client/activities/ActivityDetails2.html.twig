@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+{{
+include('client/head.html.twig')
+}}
+
+<body class="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css" integrity="sha512-DJLNx+VLY4aEiEQFjiawXaiceujj5GA7lIY8CHCIGQCBPfsEG0nGz1edb4Jvw1LR7q031zS5PpPqFuPA8ihlRA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css" integrity="sha512-UuQ/zJlbMVAw/UU8vVBhnI4op+/tFOpQZVT+FormmIEhRSCnJWyHiBbEVgM4Uztsht41f3FzVWgLuwzUqOObKw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/solid.min.css" integrity="sha512-Hp+WwK4QdKZk9/W0ViDvLunYjFrGJmNDt6sCflZNkjgvNq9mY+0tMbd6tWMiAlcf1OQyqL4gn2rYp7UsfssZPA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div id="wrapper" class="clearfix">
+    <!-- preloader -->
+    <div id="preloader">
+        <div id="spinner" class="spinner large-icon">
+            <img alt="" src="{{ asset('images/preloaders/13.gif') }}">
+        </div>
+        <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
+    </div>
+
+    <!-- Header -->
+{{ include('/client/header.html.twig') }}
+    <!-- Start main-content -->
+    <div class="main-content">
+
+        <!-- Section: inner-header -->
+        <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1500x996">
+            <div class="container pt-90 pb-50">
+                <!-- Section Content -->
+                <div class="section-content pt-100">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title text-white">Activity Details</h3>
+                            <ul class="list-inline text-white">
+                                <li>Home /</li>
+                                <li><span class="text-gray">Activity Details</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+            <div id="error-messages" style="display:none;" class="alert alert-danger">
+            </div>
+        <section>
+
+            <div class="container">
+                <div class="section-content">
+                    <div class="row">
+                        <div class="product">
+                            <div class="col-md-5">
+                                <div class="product-image">
+                                    <div class="zoom-gallery">
+                                        <a href="http://placehold.it/460x460" title="Title Here 1"><img width="100%" src="data:image/png;base64,{{ activity.getImagedata }}" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="product-summary">
+                                    <h2 class="product-title">{{ activity.title }}</h2>
+                                    <div class="product_review">
+                                        <ul class="review_text list-inline">
+                                            <li>
+                                                <div title="Rated 4.50 out of 5" class="star-rating"><span style="width: {{ avgrating*3.2 }}%;">4.50</span></div>
+                                            </li>
+                                            <li><a href="#"><span>{{ activity.users|length }} </span>Reviews</a></li>
+                                            <li><a href="#comment-form">Add reviews</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="price"> <span class="amount">{{ activity.price }} TND</span><ins><span class="amount">/ Month</span></ins> </div>
+                                    <div class="short-description">
+                                        <p>{{ activity.description }}</p>
+                                    </div>
+                                    <div class="category"><strong>Subscribers:</strong> <a href="#">{{ activity.users|length }}</a></div>
+
+                                    <div class="category"><strong>Category:</strong> <a href="#">{{ activity.typeactivity }}</a></div>
+                                    <div class="tags"><strong>Sessions:</strong> {% for session in sessions %}
+                                    {{ session.dayName }} - {{ session.starttime|date('H:i') }}:{{ session.endtime|date('H:i') }}
+                                            <br>
+{% endfor %}
+                                        <div class="cart-form-wrapper mt-30">
+                                            <form enctype="multipart/form-data" method="post" class="cart">
+                                                <input type="hidden" value="productID" name="add-to-cart">
+                                                <button class="single_add_to_cart_button btn btn-theme-colored" type="submit" >Subscribe to activity</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="horizontal-tab product-tab">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+                                        <li><a href="#tab3" data-toggle="tab">Reviews</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade in active" id="tab1">
+                                            <h3>Activity Description</h3>
+                                            <p>One Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, iste, architecto ullam tenetur quia nemo ratione tempora consectetur quos minus voluptates nisi hic alias libero explicabo reiciendis sint ut quo nulla ipsa aliquid neque molestias et qui sunt. Odit, molestiae. One Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, iste, architecto ullam tenetur quia nemo ratione tempora consectetur quos minus voluptates nisi hic alias libero explicabo reiciendis sint ut quo nulla ipsa aliquid neque molestias et qui sunt. Odit, molestiae.</p>
+                                            <p>One Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, iste, architecto ullam tenetur quia nemo ratione tempora consectetur quos minus voluptates nisi hic alias libero explicabo reiciendis sint ut quo nulla ipsa aliquid neque molestias et qui sunt. Odit, molestiae.</p>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab2">
+                                            <table class="table table-striped">
+                                                <tbody>
+                                                <tr>
+                                                    <th>Horses</th>
+                                                    <td><p>European</p></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Color</th>
+                                                    <td><p>Brown</p></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Size</th>
+                                                    <td><p>Large, Medium</p></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Weight</th>
+                                                    <td>27 kg</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Dimensions</th>
+                                                    <td>16 x 22 x 123 cm</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab3">
+                                            <div class="reviews">
+                                                <ol class="commentlist">
+                                                    {% for review in activity.users %}
+                                                        {% if review.feedback is not null %}
+                                                    <li class="comment">
+                                                        <div class="media"> <a href="#" class="media-left" style="width:7%;"><img class="img-circle" alt="" src="data:image/png;base64,{{ review.user.getImagedata }}" width="75"></a>
+                                                            <div class="media-body">
+                                                                <ul class="review_text list-inline">
+                                                                    <li>
+                                                                        <div title="Rated 5.00 out of 5" class="star-rating" style="margin-right:80px;width:480%;"><span style="width: {{ review.stars*3.2 }}%;">review.stars</span></div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <h5 class="media-heading meta"><span class="author">{{ review.user.name }} {{ review.user.lastname }}</span> - {{ review.feedbackDate|date("M d, Y") }}:</h5>
+                                                                    </li>
+                                                                </ul>
+{{ review.feedback }}                                                        </div>
+                                                        </div>
+                                                    </li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </ol>
+                                                <br>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <style>
+                                                            /* Import Google font - Poppins */
+                                                            @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+                                                            * {
+                                                                margin: 0;
+                                                                padding: 0;
+                                                                box-sizing: border-box;
+                                                                font-family: "Poppins", sans-serif;
+                                                            }
+
+                                                            .rating-box {
+                                                                position: relative;
+                                                                background: #fff;
+                                                                padding: 25px 50px 35px;
+                                                                border-radius: 25px;
+                                                                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+                                                            }
+                                                            .rating-box header {
+                                                                font-size: 22px;
+                                                                color: #dadada;
+                                                                font-weight: 500;
+                                                                margin-bottom: 20px;
+                                                                text-align: center;
+                                                            }
+                                                            .rating-box .stars {
+                                                                display: flex;
+                                                                align-items: center;
+                                                                gap: 25px;
+                                                            }
+                                                            .stars i {
+                                                                color: #e6e6e6;
+                                                                font-size: 35px;
+                                                                cursor: pointer;
+                                                                transition: color 0.2s ease;
+                                                            }
+                                                            .stars i.active {
+                                                                color: #ff9c1a;
+                                                            }
+                                                        </style>
+
+                                                        <h5>Rate this Activity</h5>
+                                                        <div class="row">
+                                                            <form role="form" method="POST" id="comment-form">
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <textarea class="form-control" required="" name="contact_message2" id="contact_message2" placeholder="Enter Message" rows="7"></textarea>
+                                                                    </div>
+                                                                    <span class="rating" data-default-rating="4.5" data-rating="5" style="display: inline-block;"><span class="star active"><span class="star active"><span class="star active"><span class="star active"><span class="star active"></span></span></span></span></span></span>
+
+                                                                    <div class="rating-box col-sm-6">
+                                                                        <div class="stars">
+                                                                            <i class="fa-solid fa-star"></i>
+                                                                            <i class="fa-solid fa-star"></i>
+                                                                            <i class="fa-solid fa-star"></i>
+                                                                            <i class="fa-solid fa-star"></i>
+                                                                            <i class="fa-solid fa-star"></i>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <button type="submit" class="btn btn-dark btn-flat pull-right flip m-0" data-loading-text="Please wait...">Submit</button>
+                                                                    </div>
+                                                                </div>
+
+                                                                <script>
+                                                                    $(document).ready(function() {
+                                                                        $("#comment-form").on("submit", function(event) {
+                                                                            event.preventDefault();
+
+                                                                            // Get the form data
+                                                                            var formData = new FormData(this);
+                                                                            formData.append('stars', $('.stars i.active').length);
+                                                                            formData.append('activityId','{{ activity.id }}');
+                                                                            // Send the AJAX request
+                                                                            $.ajax({
+                                                                                url: "{{ path('app_activity_review_submit') }}",
+                                                                                method: "POST",
+                                                                                data: formData,
+                                                                                processData: false,
+                                                                                contentType: false,
+                                                                                beforeSend: function() {
+                                                                                    // Show loading indicator or disable the submit button if needed
+                                                                                    $(".btn-submit").attr("disabled", true).text("Please wait...");
+                                                                                },
+                                                                                success: function(response) {
+                                                                                   // location.reload();
+                                                                                    // Select the ol element
+                                                                                    console.log(response);
+                                                                                },
+                                                                                error: function(jqXHR, textStatus, errorThrown) {
+                                                                                    // Handle the error response
+                                                                                    if (jqXHR.status === 422) {
+                                                                                        // If the server returns a validation error (status code 422)
+                                                                                        // Display the error messages in the form
+
+                                                                                        // Assuming the server response is in JSON format
+                                                                                    //    var errors = jqXHR.responseJSON.errors;
+                                                                                        console.log(jqXHR.responseJSON);
+                                                                                     //   var errorMessages = Object.values(errors).join("<br>");
+                                                                                            var errorMessages = jqXHR.responseJSON.message;
+                                                                                        // Display the error messages in a suitable element on your form
+                                                                                        $("#error-messages").html(errorMessages);
+                                                                                        document.getElementById("error-messages").style="";
+                                                                                    } else {
+                                                                                        // For other types of errors
+                                                                                        alert("Error sending request: " + textStatus);
+                                                                                    }
+                                                                                },
+                                                                                complete: function() {
+                                                                                    // Hide loading indicator or enable the submit button
+                                                                                    $(".btn-submit").attr("disabled", false).text("Submit");
+                                                                                }
+                                                                            });
+                                                                        });
+                                                                    });
+                                                                </script>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            // Select all elements with the "i" tag and store them in a NodeList called "stars"
+                            const stars = document.querySelectorAll(".stars i");
+                            // Loop through the "stars" NodeList
+                            stars.forEach((star, index1) => {
+                                // Add an event listener that runs a function when the "click" event is triggered
+                                star.addEventListener("click", () => {
+                                    // Loop through the "stars" NodeList Again
+                                    stars.forEach((star, index2) => {
+                                        // Add the "active" class to the clicked star and any stars with a lower index
+                                        // and remove the "active" class from any stars with a higher index
+                                        index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+                                    });
+                                });
+                            });
+                        </script>
+
+                        <div class="col-md-12 mt-30">
+                            <h3 class="line-bottom">Related Activities</h3>
+                            <div class="row multi-row-clearfix">
+                                <div class="products related">
+                                    <div class="col-sm-6 col-md-3 col-lg-3 mb-30">
+                                        <div class="product pb-0">
+                                            <span class="tag-sale">Sale!</span>
+                                            <div class="product-thumb">
+                                                <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
+                                                <div class="overlay">
+                                                    <div class="btn-add-to-cart-wrapper">
+                                                        <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
+                                                    </div>
+                                                    <div class="btn-product-view-details">
+                                                        <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">View detail</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-details text-center bg-lighter pt-15 pb-10">
+                                                <a href="#"><h5 class="product-title mt-0">Vests</h5></a>
+                                                <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 80%;">3.50</span></div>
+                                                <div class="price"><del><span class="amount">$165.00</span></del><ins><span class="amount">$160.00</span></ins></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3 col-lg-3 mb-30">
+                                        <div class="product pb-0">
+                                            <span class="tag-sale">Sale!</span>
+                                            <div class="product-thumb">
+                                                <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
+                                                <div class="overlay">
+                                                    <div class="btn-add-to-cart-wrapper">
+                                                        <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
+                                                    </div>
+                                                    <div class="btn-product-view-details">
+                                                        <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">View detail</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-details text-center bg-lighter pt-15 pb-10">
+                                                <a href="#"><h5 class="product-title mt-0">Saddles</h5></a>
+                                                <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 60%;">3.50</span></div>
+                                                <div class="price"><del><span class="amount">$70.00</span></del><ins><span class="amount">$55.00</span></ins></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3 col-lg-3 mb-30">
+                                        <div class="product pb-0">
+                                            <div class="product-thumb">
+                                                <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
+                                                <div class="overlay">
+                                                    <div class="btn-add-to-cart-wrapper">
+                                                        <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
+                                                    </div>
+                                                    <div class="btn-product-view-details">
+                                                        <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">View detail</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-details text-center bg-lighter pt-15 pb-10">
+                                                <a href="#"><h5 class="product-title mt-0">Helmets</h5></a>
+                                                <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 75%;">3.50</span></div>
+                                                <div class="price"><ins><span class="amount">$185.00</span></ins></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md3 col-lg-3 mb-30">
+                                        <div class="product pb-0">
+                                            <div class="product-thumb">
+                                                <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
+                                                <div class="overlay">
+                                                    <div class="btn-add-to-cart-wrapper">
+                                                        <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
+                                                    </div>
+                                                    <div class="btn-product-view-details">
+                                                        <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">View detail</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-details text-center bg-lighter pt-15 pb-10">
+                                                <a href="#"><h5 class="product-title mt-0">Saddles</h5></a>
+                                                <div class="star-rating" title="Rated 5.00 out of 5"><span style="width: 100%;">5.00</span></div>
+                                                <div class="price"><ins><span class="amount">$480.00</span></ins></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end main-content -->
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <section class="divider layer-overlay overlay-dark-8" data-bg-img="http://placehold.it/1500x996">
+            <div class="container pt-60 pb-30">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget dark">
+                            <img class="mt-5 mb-10" alt="" src="{{ asset('images/logo-wide-white.png') }}">
+                            <p>203, Envato Labs, Behind Alis Steet, Melbourne, Australia.</p>
+                            <ul class="list-inline mt-5">
+                                <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone text-theme-colored mr-5"></i> <a class="text-gray" href="#">123-456-789</a> </li>
+                                <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o text-theme-colored mr-5"></i> <a class="text-gray" href="#">contact@yourdomain.com</a> </li>
+                            </ul>
+                            <h5 class="widget-title mt-10 mb-10">Connect With Us</h5>
+                            <ul class="styled-icons icon-sm icon-bordered icon-theme-colored">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget dark">
+                            <h4 class="widget-title line-bottom-theme-colored">Useful Links</h4>
+                            <ul class="list angle-double-right list-border">
+                                <li><a href="{{ path('page-about-style1') }}">About</a></li>
+                                <li><a href="{{ path('page-membership') }}">Membership</a></li>
+                                <li><a href="{{ path('page-riding-school') }}">Riding School</a></li>
+                                <li><a href="{{ path('page-our-horses') }}">Our Horses</a></li>
+                                <li><a href="{{ path('shop-category-sidebar') }}">Shop</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget dark">
+                            <h4 class="widget-title line-bottom-no-border">Photos from Flickr</h4>
+                            <div id="flickr-feed" class="clearfix mt-30">
+                                <!-- Flickr Link -->
+                                <script src="{{ asset('http://www.flickr.com/badge_code_v2.gne?count=9&amp;display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=52617155@N08') }}"></script>
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget dark">
+                            <h4 class="widget-title line-bottom-theme-colored">Opening Hours</h4>
+                            <div class="opening-hourse">
+                                <ul class="list list-border text-gray-darkgray">
+                                    <li class="clearfix"> <span><i class="fa fa-clock-o mr-5"></i> Mond -Tuesday :</span>
+                                        <div class="value pull-right flip"> 9.00 am - 10.00 pm </div>
+                                    </li>
+                                    <li class="clearfix"> <span><i class="fa fa-clock-o mr-5"></i> Wed - Thurs :  </span>
+                                        <div class="value pull-right flip"> 10.00 am - 8.00 pm </div>
+                                    </li>
+                                    <li class="clearfix"> <span class="text-theme-colored"><i class="fa fa-clock-o mr-5"></i> Friday : </span>
+                                        <div class="value pull-right flip text-theme-colored"> 10.00 am - 6.00 pm </div>
+                                    </li>
+                                    <li class="clearfix"> <span><i class="fa fa-clock-o mr-5"></i> Saturday : </span>
+                                        <div class="value pull-right flip"> 2.00 pm - 8.00 pm </div>
+                                    </li>
+                                    <li class="clearfix"> <span><i class="fa fa-clock-o mr-5"></i> Sunday :</span>
+                                        <div class="value pull-right flip"> <span class="text-highlight bg-theme-colored text-white">Colsed</span>  </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container-fluid p-20" data-bg-color="#253944">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <p class="text-white font-11 m-0">Copyright &copy;2016 ThemeMascot. All Rights Reserved</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a> </div>
+<!-- end wrapper -->
+
+<!-- Footer Scripts -->
+<!-- JS | Custom script for all pages -->
+<script src="{{ asset('js/custom.js') }}"></script></script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{# usernavbar.twig #}
+
+<nav id="menuzord" class="menuzord pull-left flip menuzord-responsive"><a href="javascript:void(0)" class="showhide" style="display: none;"><em></em><em></em><em></em></a>
+    <ul class="menuzord-menu menuzord-indented scrollable" style="max-height: 400px;">
+        <li class="active"><a href="{{ path('app_client_products') }}">Store</a></li>
+        <li><a href="{{ path('app_client_products') }}">Activitées</a></li>
+        <li><a href="{{ path('app_client_products') }}">Posts</a></li>
+
+    </ul>
+    <ul class="pull-right flip hidden-sm hidden-xs">
+        <li>
+            <!-- Ajax Popup form Starts -->
+            <a class="btn btn-colored btn-flat top-left-triangle bg-theme-colored text-white font-14 ajaxload-popup p-10 mt-15 pr-30 pl-15" href="/reservation-form">Get A quote Now</a>
+            <!-- Ajax Popup form End -->
+        </li>
+    </ul>
+    <div id="top-search-bar" class="collapse">
+        <div class="container">
+            <form role="search" action="#" class="search_form_top" method="get">
+                <input type="text" placeholder="Type text and press Enter..." name="s" class="form-control" autocomplete="off">
+                <span class="search-close"><i class="fa fa-search"></i></span>
+            </form>
+        </div>
+    </div>
+</nav>
