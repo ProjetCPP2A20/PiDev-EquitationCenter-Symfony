@@ -57,7 +57,6 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
 
                 // 2) do we have a matching user by email?
                 $user = $this->entityManager->getRepository(Users::class)->findOneBy(['email' => $email]);
-
                 // 3) Maybe you just want to "register" them by creating
                 // a User object
                 // $user->setFacebookId($googleUser->getId());
@@ -77,9 +76,13 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
             $targetUrl = $this->router->generate('app_admin_users');
             return new RedirectResponse($targetUrl);
         }
+        if(in_array('ROLE_CLIENT',$user->getRoles(),true))
+        {
         $targetUrl = $this->router->generate('app_client_homepage');
         return new RedirectResponse($targetUrl);
-
+        }
+            $targetUrl = $this->router->generate('app_dash');
+            return new RedirectResponse($targetUrl);
         // or, on success, let the request continue to be handled by the controller
         //return null;
     }
