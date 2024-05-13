@@ -13,9 +13,7 @@ class SecurityController extends AbstractController
 {    #[Route('/home', name: 'app_home')]
 public function index(): Response
 {
-  return $this->render('Users/index-dark-mp-layout1.twig', [
-    'controller_name' => 'SecurityController',
-  ]);
+  return $this->redirectToRoute('app_client_products');
 }
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response

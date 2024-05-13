@@ -9,15 +9,7 @@ use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 
 class DemoHomePageController extends AbstractController
 {
-    /**
-     * @Route("/", name="indexpage")
-     */
-    public function notindex(): Response
-    {
-        return $this->render('demo_home_page/index.html.twig', [
-            'controller_name' => 'DemoHomePageController',
-        ]);
-    }
+
     /**
      * @Route("/reservation-form", name="reservation-form")
      */

@@ -47,12 +47,12 @@ class ProductOrderRepository extends ServiceEntityRepository
 //    }
     public  function sms(){
         // Your Account SID and Auth Token from twilio.com/console
-        $sid = 'ACef33a5a8f8fc5c4f49185924b3d4cfaf';
-        $auth_token = 'cf47f9ba45911abc6078459f2ca0052f';
+        $sid = 'ACc6ebe6ea2c8b951c4c68b65bb552043d';
+        $auth_token = '66510fcc108516ca8ade57606111fc3c';
         // In production, these should be environment variables. E.g.:
         // $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
         // A Twilio number you own with SMS capabilities
-        $twilio_number = "+13135283495";
+        $twilio_number = "+15082839046";
 
         $client = new Client($sid, $auth_token);
         $client->messages->create(
@@ -60,7 +60,7 @@ class ProductOrderRepository extends ServiceEntityRepository
             '+21694854835',
             [
                 // A Twilio phone number you purchased at twilio.com/console
-                'from' => '+19192611686',
+                'from' => '+15082839046',
                 // the body of the text message you'd like to send
                 'body' => 'Votre paiement traiter avec succès'
             ]

@@ -857,11 +857,14 @@
     <!-- END: Top Bar -->
     <div class="flex overflow-hidden">
         <!-- BEGIN: Side Menu -->
-        {% include('AdminSidebar.html.twig') %}
+        {{ include('AdminSideBar.html.twig')}}        <div class="mt-5 grid grid-cols-12 gap-6">
+            <iframe src="{{ path('app_admin_sessions_calendar') }}" style="width:100%; height:100%; position:absolute;"></iframe>
+        </div>
+        <!-- END: Pagination -->
     </div>
 
-        <!-- BEGIN: Delete Confirmation Modal -->
-            <!-- END: Delete Confirmation Modal -->
-    </div>
+    <!-- BEGIN: Delete Confirmation Modal -->
+    <!-- END: Delete Confirmation Modal -->
+</div>
 
 </body></html>
